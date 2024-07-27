@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mts/core/widgets/custom_button.dart';
+import 'package:mts/features/register/set_location.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../core/constants/colors.dart';
+import '../../core/utils/navigation.dart';
 import '../../core/widgets/custom_padding.dart';
 import '../../core/widgets/custom_text_filed.dart';
 import 'widget/container_upload_widget.dart';
@@ -105,6 +107,12 @@ class UploadDocumentScreen extends StatelessWidget {
             CustomButton(
               height: 7.h,
               buttonText: "Done , Let's go!",
+              onPressed: () {
+                NavigationHelper.navigateTo(
+                  context,
+                  const SelectLocationScreen(),
+                );
+              },
             ),
             const SizedBox(height: 10.0),
           ],

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import 'features/upload_document/upload_document.dart';
+import 'features/register/set_location.dart';
+import 'features/register/upload_document.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
             child: child!,
           );
         },
-        home: const UploadDocumentScreen(),
+        home: const SelectLocationScreen(),
       ),
     );
   }

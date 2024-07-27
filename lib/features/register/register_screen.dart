@@ -6,6 +6,7 @@ import '../../core/utils/navigation.dart';
 import '../../core/widgets/custom_button.dart';
 import '../../core/widgets/custom_padding.dart';
 import '../../core/widgets/custom_text_filed.dart';
+import 'upload_document.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -111,7 +112,7 @@ class RegisterScreen extends StatelessWidget {
                           onTap: () {
                             NavigationHelper.navigateTo(
                               context,
-                              const RegisterScreen(),
+                              const UploadDocumentScreen(),
                             );
                           },
                           child: const Text("Already Have an Account ? Login"),
