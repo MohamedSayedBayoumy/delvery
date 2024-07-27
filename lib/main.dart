@@ -23,7 +23,16 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, screenType) => MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(scaffoldBackgroundColor: Colors.white),
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          useMaterial3: false,
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.white,
+            elevation: 0.0,
+            iconTheme: IconThemeData(color: Colors.black),
+            titleTextStyle: TextStyle(color: Colors.black),
+          ),
+        ),
         builder: (context, child) {
           return MediaQuery(
             data: MediaQuery.of(context).copyWith(
