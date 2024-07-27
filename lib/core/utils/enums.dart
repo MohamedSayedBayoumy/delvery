@@ -1,0 +1,3 @@
+enum IconType { iconData, assets }
+
+ 

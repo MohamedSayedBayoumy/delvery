@@ -1,0 +1,46 @@
+import 'dart:async';
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+
+class DioServices {
+  static final dio = Dio()
+    ..interceptors.add(PrettyDioLogger(
+      requestHeader: true,
+      requestBody: true,
+      responseHeader: true,
+      responseBody: true,
+      error: true,
+      compact: true,
+      maxWidth: 90,
+    ));
+  static String userToken = "";
+
+  static Future<Response> post(
+      {String? url, dynamic data, Map<String, dynamic>? headers}) async {
+    log("Api is ()=> $url");
+    final request = await dio.post(
+      url!,
+      data: data,
+      options: Options(
+        headers: {},
+      ),
+    );
+
+    return request;
+  }
+
+  static Future<Response> get(
+      {String? url, dynamic data, Map<String, dynamic>? headers}) async {
+    log("Api is ()=> $url");
+
+    final request = await dio.get(
+      url!,
+      options: Options(
+        headers: {},
+      ),
+    );
+    return request;
+  }
+}
