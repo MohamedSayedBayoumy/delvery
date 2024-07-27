@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -36,12 +37,42 @@ class RegisterScreen extends StatelessWidget {
                     controller: TextEditingController(),
                   ),
                   const SizedBox(height: 15.0),
-                  const Text("Email"),
+                  const Text("Last Name"),
                   const SizedBox(height: 10.0),
                   CustomTextField(
                     labelText: "Enter Your Last Name",
                     hinText: "Enter Your Last Name",
                     controller: TextEditingController(),
+                  ),
+                  const SizedBox(height: 15.0),
+                  const Text("Email"),
+                  const SizedBox(height: 10.0),
+                  CustomTextField(
+                    labelText: "Enter Your Email",
+                    hinText: "Enter Your Email",
+                    controller: TextEditingController(),
+                  ),
+                  const SizedBox(height: 15.0),
+                  const Text("Contact Number"),
+                  const SizedBox(height: 10.0),
+                  Row(
+                    children: [
+                      const CountryCodePicker(
+                        onChanged: print,
+                        initialSelection: 'EG',
+                        favorite: ['EG'],
+                        showCountryOnly: false,
+                        showOnlyCountryWhenClosed: false,
+                        alignLeft: false,
+                      ),
+                      Expanded(
+                        child: CustomTextField(
+                          labelText: "000 000 000",
+                          hinText: "000 000 000",
+                          controller: TextEditingController(),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 15.0),
                   const Text("Password"),

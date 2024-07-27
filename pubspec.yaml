@@ -50,6 +50,7 @@ dependencies:
   flutter_secure_storage:
   clear_all_notifications:
   device_preview:
+  country_code_picker: ^3.0.0
 
 dev_dependencies:
   flutter_test:
