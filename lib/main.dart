@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'features/bottom_navigation/bottom_navigation_screen.dart';
-import 'features/register/set_location.dart';
-import 'features/register/upload_document.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

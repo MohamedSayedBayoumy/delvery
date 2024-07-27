@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mts/features/profile/profile_screen.dart';
 
 import '../../core/constants/colors.dart';
+import '../notification/notification_screen.dart';
 import '../orders/orders_screen.dart';
 
 class BottomNavigationBarScreens extends StatefulWidget {
@@ -38,6 +40,8 @@ class _BottomNavigationBarScreensState
         },
         children: const [
           OrdersScreen(),
+          NotificationScreen(),
+          ProfileScreen()
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
