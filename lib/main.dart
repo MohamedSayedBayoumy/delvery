@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import 'features/bottom_navigation/bottom_navigation_screen.dart';
 import 'features/register/set_location.dart';
 import 'features/register/upload_document.dart';
 
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
             child: child!,
           );
         },
-        home: const SelectLocationScreen(),
+        home: const BottomNavigationBarScreens(),
       ),
     );
   }
