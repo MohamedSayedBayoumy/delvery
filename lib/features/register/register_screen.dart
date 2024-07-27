@@ -102,20 +102,22 @@ class RegisterScreen extends StatelessWidget {
                   const CustomButton(
                     buttonText: "Create New Account",
                   ),
-                  const SizedBox(height: 12.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          NavigationHelper.navigateTo(
-                            context,
-                            const RegisterScreen(),
-                          );
-                        },
-                        child: const Text("Already Have an Account ? Login"),
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            NavigationHelper.navigateTo(
+                              context,
+                              const RegisterScreen(),
+                            );
+                          },
+                          child: const Text("Already Have an Account ? Login"),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
