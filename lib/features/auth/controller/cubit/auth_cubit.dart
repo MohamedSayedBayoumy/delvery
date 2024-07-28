@@ -87,6 +87,11 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
+  List<String> types = ['Car', 'bike', 'bicycle'];
+  String type = "";
+  TextEditingController vehicleType = TextEditingController();
+  TextEditingController vehicleNumber = TextEditingController();
+
   uploadDocument(context) async {
     emit(LoadingAuth());
     final result = await authRepository.login(

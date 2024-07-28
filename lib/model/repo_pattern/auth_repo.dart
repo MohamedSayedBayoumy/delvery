@@ -16,6 +16,9 @@ abstract class AuthRepository {
 
   Future<Either<FailureHandler, LoginResponseModel>> login(
       {AuthParamModel model});
+
+  // Future<Either<FailureHandler, LoginResponseModel>> uploadDocument(
+  //     {AuthParamModel model});
 }
 
 class AuthImple implements AuthRepository {
@@ -64,4 +67,11 @@ class AuthImple implements AuthRepository {
       );
     }
   }
+
+  // @override
+  // Future<Either<FailureHandler, LoginResponseModel>> uploadDocument(
+  //     {AuthParamModel model}) {
+  //   // TODO: implement uploadDocument
+  //   throw UnimplementedError();
+  // }
 }
