@@ -22,42 +22,58 @@ class ProfileScreen extends StatelessWidget {
                 title: "My Documents",
                 icon: Icons.edit_document,
               ),
-              Divider(),
+              Divider(
+                height: 0.1,
+              ),
               ListTileWidget(
                 title: "History",
                 icon: Icons.history,
               ),
-              Divider(),
+              Divider(
+                height: 0.1,
+              ),
               ListTileWidget(
                 title: "My Cash Balance",
                 icon: Icons.wallet_rounded,
               ),
-              Divider(),
+              Divider(
+                height: 0.1,
+              ),
               ListTileWidget(
                 title: "Earning History",
                 icon: Icons.grading_sharp,
               ),
-              Divider(),
+              Divider(
+                height: 0.1,
+              ),
               ListTileWidget(
                 title: "Change Password",
                 icon: Icons.password,
               ),
-              Divider(),
+              Divider(
+                height: 0.1,
+              ),
               ListTileWidget(
                 title: "FAQs",
                 icon: Icons.question_mark_rounded,
               ),
-              Divider(),
+              Divider(
+                height: 0.1,
+              ),
               ListTileWidget(
                 title: "Language",
                 icon: Icons.language_rounded,
               ),
-              Divider(),
+              Divider(
+                height: 0.1,
+              ),
               ListTileWidget(
                 title: "Sing Out",
                 icon: Icons.login_sharp,
               ),
-              Divider(),
+              Divider(
+                height: 0.1,
+              ),
             ],
           ),
         ),

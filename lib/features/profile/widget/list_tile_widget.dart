@@ -19,9 +19,11 @@ class ListTileWidget extends StatelessWidget {
         leading: Icon(
           icon,
           color: Colors.black,
+          size: 25.0,
         ),
         title: Text(
           title,
+          style: const TextStyle(fontSize: 15.0),
         ),
       ),
     );
