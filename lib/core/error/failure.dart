@@ -1,6 +1,6 @@
 abstract class FailureHandler {
   final String message;
-  final String status;
+  final bool status;
 
   FailureHandler({required this.message, required this.status});
 }

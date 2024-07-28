@@ -9,4 +9,8 @@ final class LoadingAuth extends AuthState {}
 
 final class SuccessAuth extends AuthState {}
 
-final class FailureAuth extends AuthState {}
+final class FailureAuth extends AuthState {
+  final String message;
+
+  FailureAuth({required this.message});
+}

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,13 +37,8 @@ class RegisterScreen extends StatelessWidget {
                       );
                     } else if (state is FailureAuth) {
                       final snackBar = SnackBar(
-                        content: const Text('Yay! A SnackBar!'),
-                        action: SnackBarAction(
-                          label: 'Undo',
-                          onPressed: () {
-                            // Some code to undo the change.
-                          },
-                        ),
+                        backgroundColor: Colors.red,
+                        content: Text(state.message),
                       );
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     } else {}
@@ -62,11 +59,7 @@ class RegisterScreen extends StatelessWidget {
                         CustomTextField(
                           labelText: "Enter Your Full Name",
                           hinText: "Enter Your Full Name",
-                          controller: TextEditingController(),
-                          onChange: (v) {
-                            cubit.registerParamModel!.name = v;
-                            return v;
-                          },
+                          controller: cubit.fullNameController,
                         ),
                         const SizedBox(height: 15.0),
                         const Text("Email"),
@@ -74,21 +67,20 @@ class RegisterScreen extends StatelessWidget {
                         CustomTextField(
                           labelText: "Enter Your Email",
                           hinText: "Enter Your Email",
-                          controller: TextEditingController(),
-                          onChange: (v) {
-                            cubit.registerParamModel!.email = v;
-                            return v;
-                          },
+                          controller: cubit.emailController,
                         ),
                         const SizedBox(height: 15.0),
                         const Text("Contact Number"),
                         const SizedBox(height: 10.0),
                         Row(
                           children: [
-                            const CountryCodePicker(
-                              onChanged: print,
+                            CountryCodePicker(
+                              onChanged: (c) {
+                                cubit.countryCode = c.dialCode!;
+                                log("#### ${c.dialCode}");
+                              },
                               initialSelection: 'EG',
-                              favorite: ['EG'],
+                              favorite: const ['EG'],
                               showCountryOnly: false,
                               showOnlyCountryWhenClosed: false,
                               alignLeft: false,
@@ -97,11 +89,7 @@ class RegisterScreen extends StatelessWidget {
                               child: CustomTextField(
                                 labelText: "000 000 000",
                                 hinText: "000 000 000",
-                                controller: TextEditingController(),
-                                onChange: (v) {
-                                  cubit.registerParamModel!.phoneNumber = v;
-                                  return v;
-                                },
+                                controller: cubit.phoneController,
                               ),
                             ),
                           ],
@@ -112,11 +100,7 @@ class RegisterScreen extends StatelessWidget {
                         CustomTextField(
                           labelText: "Enter Your Password",
                           hinText: "Enter Your Password",
-                          controller: TextEditingController(),
-                          onChange: (v) {
-                            cubit.registerParamModel!.password = v;
-                            return v;
-                          },
+                          controller: cubit.passwordController,
                           suffixWidget: IconButton(
                             onPressed: () {},
                             icon: const Icon(Icons.visibility_outlined),
@@ -126,13 +110,9 @@ class RegisterScreen extends StatelessWidget {
                         const Text("Confirm Password"),
                         const SizedBox(height: 10.0),
                         CustomTextField(
-                          labelText: "Enter Your Password",
-                          hinText: "Enter Your Password",
-                          controller: TextEditingController(),
-                          onChange: (v) {
-                            cubit.registerParamModel!.confirmPassword = v;
-                            return v;
-                          },
+                          labelText: "Enter Your Confirm Password",
+                          hinText: "Enter Your Confirm Password",
+                          controller: cubit.confirmController,
                           suffixWidget: IconButton(
                             onPressed: () {},
                             icon: const Icon(Icons.visibility_outlined),

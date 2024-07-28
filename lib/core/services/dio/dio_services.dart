@@ -21,13 +21,10 @@ class DioServices {
 
   static Future<Response> post(
       {String? url, dynamic data, Map<String, dynamic>? headers}) async {
-    log("Api is ()=> $url");
+    log("Api is ()=> ${Api.baseUrl}$url");
     final request = await dio.post(
       "${Api.baseUrl}$url",
       data: data,
-      options: Options(
-        headers: {},
-      ),
     );
 
     return request;
@@ -39,9 +36,6 @@ class DioServices {
 
     final request = await dio.get(
       "${Api.baseUrl}$url",
-      options: Options(
-        headers: {},
-      ),
     );
     return request;
   }

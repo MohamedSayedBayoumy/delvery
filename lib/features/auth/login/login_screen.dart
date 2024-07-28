@@ -15,20 +15,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isChecked = false;
-
-    Color getColor(Set<WidgetState> states) {
-      const Set<WidgetState> interactiveStates = <WidgetState>{
-        WidgetState.pressed,
-        WidgetState.hovered,
-        WidgetState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.white;
-      }
-      return Colors.white;
-    }
-
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -38,6 +24,8 @@ class LoginScreen extends StatelessWidget {
               child: BlocConsumer<AuthCubit, AuthState>(
                 listener: (context, state) {},
                 builder: (context, state) {
+                  final cubit = AuthCubit.get(context);
+
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -78,10 +66,10 @@ class LoginScreen extends StatelessWidget {
                           Checkbox(
                             checkColor: Colors.green,
                             fillColor:
-                                WidgetStateProperty.resolveWith(getColor),
-                            value: isChecked,
+                                WidgetStateProperty.resolveWith(cubit.getColor),
+                            value: cubit.isChecked,
                             onChanged: (bool? value) {
-                              isChecked = value!;
+                              cubit.isChecked = value!;
                             },
                           ),
                           const Text("Remember Me"),
