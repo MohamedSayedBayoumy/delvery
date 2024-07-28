@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mts/features/profile/my_document.dart';
 import '../../core/widgets/custom_padding.dart';
+import 'history_screen.dart';
 import 'widget/list_tile_widget.dart';
 import 'widget/profile_widget.dart';
 
@@ -21,6 +23,7 @@ class ProfileScreen extends StatelessWidget {
               ListTileWidget(
                 title: "My Documents",
                 icon: Icons.edit_document,
+                to: MyDocumentScreen(),
               ),
               Divider(
                 height: 0.1,
@@ -28,6 +31,7 @@ class ProfileScreen extends StatelessWidget {
               ListTileWidget(
                 title: "History",
                 icon: Icons.history,
+                to: HistoryScreen(),
               ),
               Divider(
                 height: 0.1,
