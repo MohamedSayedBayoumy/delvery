@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mts/features/bottom_navigation/bottom_navigation_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import 'features/profile/change_password_screeen.dart';
-import 'features/profile/language_screen.dart';
+import 'core/services/get_it/single_tone.dart';
+import 'features/bottom_navigation/bottom_navigation_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  ServicesLocator.service();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

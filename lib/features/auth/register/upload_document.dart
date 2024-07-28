@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mts/core/widgets/custom_button.dart';
-import 'package:mts/features/register/set_location.dart';
+import 'package:mts/features/auth/register/set_location.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../core/constants/colors.dart';
-import '../../core/utils/navigation.dart';
-import '../../core/widgets/custom_padding.dart';
-import '../../core/widgets/custom_text_filed.dart';
+import '../../../core/constants/colors.dart';
+import '../../../core/utils/navigation.dart';
+import '../../../core/widgets/custom_padding.dart';
+import '../../../core/widgets/custom_text_filed.dart';
 import 'widget/container_upload_widget.dart';
 
 class UploadDocumentScreen extends StatelessWidget {

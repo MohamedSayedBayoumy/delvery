@@ -3,7 +3,7 @@ import 'package:mts/core/widgets/custom_button.dart';
 import 'package:mts/core/widgets/custom_padding.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../core/constants/colors.dart';
+import '../../../core/constants/colors.dart';
 
 class SelectLocationScreen extends StatelessWidget {
   const SelectLocationScreen({super.key});

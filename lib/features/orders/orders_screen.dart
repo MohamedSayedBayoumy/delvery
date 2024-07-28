@@ -3,7 +3,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../core/constants/colors.dart';
 import '../../core/utils/navigation.dart';
-import '../register/set_location.dart';
+import '../auth/register/set_location.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});

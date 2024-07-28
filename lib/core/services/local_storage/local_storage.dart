@@ -3,9 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class SecureLocalStorage {
   static const FlutterSecureStorage storage = FlutterSecureStorage();
 
-  static const themeAppKey = "theme";
-
-  static const viewOnBoardingKey = "viewOnBoarding";
+  static String userRegistrationKey = "userRegistrationKey";
 
   static Future<void> set({String? key, String? value}) async {
     await storage.write(key: key!, value: value);

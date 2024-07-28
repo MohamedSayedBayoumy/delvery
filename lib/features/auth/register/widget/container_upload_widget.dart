@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../../core/constants/colors.dart';
+import '../../../../core/constants/colors.dart';
 
 class ContainerUploadWidget extends StatelessWidget {
   final String title;

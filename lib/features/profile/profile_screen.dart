@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mts/core/utils/navigation.dart';
-import 'package:mts/features/login/login_screen.dart';
+import 'package:mts/features/auth/login/login_screen.dart';
 import 'package:mts/features/profile/change_password_screeen.dart';
 import 'package:mts/features/profile/language_screen.dart';
 import 'package:mts/features/profile/my_cash.dart';

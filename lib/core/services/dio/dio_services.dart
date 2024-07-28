@@ -4,6 +4,8 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import '../../constants/api.dart';
+
 class DioServices {
   static final dio = Dio()
     ..interceptors.add(PrettyDioLogger(
@@ -21,7 +23,7 @@ class DioServices {
       {String? url, dynamic data, Map<String, dynamic>? headers}) async {
     log("Api is ()=> $url");
     final request = await dio.post(
-      url!,
+      "${Api.baseUrl}$url",
       data: data,
       options: Options(
         headers: {},
@@ -36,7 +38,7 @@ class DioServices {
     log("Api is ()=> $url");
 
     final request = await dio.get(
-      url!,
+      "${Api.baseUrl}$url",
       options: Options(
         headers: {},
       ),

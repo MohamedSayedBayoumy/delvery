@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../core/utils/navigation.dart';
-import 'login/login_screen.dart';
+import 'auth/login/login_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
