@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import 'features/bottom_navigation/bottom_navigation_screen.dart';
-import 'features/profile/history_screen.dart';
-import 'features/profile/my_cash.dart';
-import 'features/profile/my_document.dart';
+import 'features/profile/change_password_screeen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,7 +41,7 @@ class MyApp extends StatelessWidget {
             child: child!,
           );
         },
-        home: const MyCashBalanceScreen(),
+        home: const ChangePasswordScreeen(),
       ),
     );
   }
