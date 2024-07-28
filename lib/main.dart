@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'features/profile/change_password_screeen.dart';
+import 'features/profile/language_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
             child: child!,
           );
         },
-        home: const ChangePasswordScreeen(),
+        home: const LanguageScreen(),
       ),
     );
   }
