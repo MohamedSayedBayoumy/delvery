@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../../core/functions/loading_ui.dart';
 import '../../../core/services/get_it/single_tone.dart';
 import '../../../core/utils/navigation.dart';
 import '../../../core/widgets/custom_button.dart';
@@ -31,7 +32,7 @@ class RegisterScreen extends StatelessWidget {
                 child: BlocConsumer<AuthCubit, AuthState>(
                   listener: (context, state) {
                     if (state is SuccessAuth) {
-                      NavigationHelper.navigateTo(
+                      NavigationHelper.navigateRemoveUntilTo(
                         context,
                         const UploadDocumentScreen(),
                       );
@@ -41,6 +42,8 @@ class RegisterScreen extends StatelessWidget {
                         content: Text(state.message),
                       );
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    } else if (state is LoadingAuth) {
+                      loadingAlert(context);
                     } else {}
                   },
                   builder: (context, state) {

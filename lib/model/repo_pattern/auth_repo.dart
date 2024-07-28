@@ -30,12 +30,15 @@ class AuthImple implements AuthRepository {
 
       return Right(GlobalResponseModel.fromJson(response.data));
     } on DioException catch (e) {
-      log(" ccc ${e.response!.data}");
+      log("${e.response!.data}");
 
-      return Left(FailureCase(
-        message: e.response!.data["message"] ?? "Something is wrong",
-        status: e.response!.data["status"],
-      ));
+      return Left(
+        FailureCase(
+          message: e.response!.data["message"] ?? "Something is wrong",
+          status: e.response!.data["status"],
+          failuresCases: e.response!.data["data"] ?? [],
+        ),
+      );
     }
   }
 
@@ -50,12 +53,15 @@ class AuthImple implements AuthRepository {
 
       return Right(LoginResponseModel.fromJson(response.data));
     } on DioException catch (e) {
-      log(" ccc ${e.response!.data}");
+      log("${e.response!.data}");
 
-      return Left(FailureCase(
-        message: e.response!.data["message"] ?? "Something is wrong",
-        status: e.response!.data["status"],
-      ));
+      return Left(
+        FailureCase(
+          message: e.response!.data["message"] ?? "Something is wrong",
+          status: e.response!.data["status"],
+          failuresCases: e.response!.data["data"] ?? [],
+        ),
+      );
     }
   }
 }

@@ -38,7 +38,14 @@ class AuthCubit extends Cubit<AuthState> {
 
     result.fold(
       (l) {
-        emit(FailureAuth(message: l.message));
+        if (l.failuresCases.isNotEmpty) {
+          emit(
+            FailureAuth(
+                message: l.failuresCases.map((e) => e.values.first).join('\n')),
+          );
+        } else {
+          emit(FailureAuth(message: l.message));
+        }
       },
       (r) async {
         await SecureLocalStorage.set(
@@ -63,7 +70,12 @@ class AuthCubit extends Cubit<AuthState> {
 
     result.fold(
       (l) {
-        emit(FailureAuth(message: l.message));
+        if (l.failuresCases.isNotEmpty) {
+          emit(FailureAuth(
+              message: l.failuresCases.map((e) => e.values.first).join(', ')));
+        } else {
+          emit(FailureAuth(message: l.message));
+        }
       },
       (r) async {
         await SecureLocalStorage.set(
