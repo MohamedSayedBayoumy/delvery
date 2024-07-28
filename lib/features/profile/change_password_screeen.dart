@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mts/core/widgets/custom_button.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../core/widgets/custom_button.dart';
 import '../../core/widgets/custom_padding.dart';
 import '../../core/widgets/custom_text_filed.dart';
 
