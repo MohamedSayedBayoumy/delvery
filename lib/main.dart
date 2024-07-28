@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'features/bottom_navigation/bottom_navigation_screen.dart';
+import 'features/profile/my_document.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
             child: child!,
           );
         },
-        home: const BottomNavigationBarScreens(),
+        home: const MyDocumentScreen(),
       ),
     );
   }
