@@ -122,7 +122,7 @@ class RegisterScreen extends StatelessWidget {
                         CustomButton(
                           buttonText: "Create New Account",
                           onPressed: () {
-                            cubit.register();
+                            cubit.register(context);
                           },
                         ),
                         Padding(
@@ -131,9 +131,13 @@ class RegisterScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  cubit.resetValues();
+                                  Navigator.pop(context);
+                                },
                                 child: const Text(
-                                    "Already Have an Account ? Login"),
+                                  "Already Have an Account ? Login",
+                                ),
                               ),
                             ],
                           ),

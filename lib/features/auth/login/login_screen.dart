@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mts/core/functions/loading_ui.dart';
 import 'package:mts/core/services/get_it/single_tone.dart';
+import 'package:mts/features/bottom_navigation/bottom_navigation_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../core/utils/navigation.dart';
@@ -22,7 +24,22 @@ class LoginScreen extends StatelessWidget {
             child: BlocProvider<AuthCubit>(
               create: (context) => sl<AuthCubit>(),
               child: BlocConsumer<AuthCubit, AuthState>(
-                listener: (context, state) {},
+                listener: (context, state) {
+                  if (state is SuccessAuth) {
+                    NavigationHelper.navigateTo(
+                      context,
+                      const BottomNavigationBarScreens(),
+                    );
+                  } else if (state is FailureAuth) {
+                    final snackBar = SnackBar(
+                      backgroundColor: Colors.red,
+                      content: Text(state.message),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  } else if (state is LoadingAuth) {
+                    loadingAlert(context);
+                  } else {}
+                },
                 builder: (context, state) {
                   final cubit = AuthCubit.get(context);
 
@@ -40,7 +57,7 @@ class LoginScreen extends StatelessWidget {
                       CustomTextField(
                         labelText: "Enter Your Email ID",
                         hinText: "Enter Your Email ID",
-                        controller: TextEditingController(),
+                        controller: cubit.emailController,
                         onChange: (v) {
                           return v;
                         },
@@ -51,28 +68,24 @@ class LoginScreen extends StatelessWidget {
                       CustomTextField(
                         labelText: "Enter Your Password",
                         hinText: "Enter Your Password",
-                        controller: TextEditingController(),
+                        maxLines: 1,
+                        controller: cubit.passwordController,
                         onChange: (v) {
                           return v;
                         },
+                        obscureText: cubit.showPassword,
                         suffixWidget: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.visibility_outlined),
+                          onPressed: () {
+                            cubit.toggleShowPassword();
+                          },
+                          icon: Icon(cubit.showPassword == true
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined),
                         ),
                       ),
                       const SizedBox(height: 10.0),
                       Row(
                         children: [
-                          Checkbox(
-                            checkColor: Colors.green,
-                            fillColor:
-                                WidgetStateProperty.resolveWith(cubit.getColor),
-                            value: cubit.isChecked,
-                            onChanged: (bool? value) {
-                              cubit.isChecked = value!;
-                            },
-                          ),
-                          const Text("Remember Me"),
                           const Spacer(),
                           TextButton(
                             onPressed: () {},
@@ -84,7 +97,10 @@ class LoginScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 10.0),
-                      const CustomButton(
+                      CustomButton(
+                        onPressed: () {
+                          cubit.login(context);
+                        },
                         buttonText: "Login",
                       ),
                       const SizedBox(height: 12.0),
@@ -93,6 +109,7 @@ class LoginScreen extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: () {
+                              cubit.resetValues();
                               NavigationHelper.navigateTo(
                                 context,
                                 const RegisterScreen(),

@@ -107,7 +107,6 @@ class CustomTextField extends StatelessWidget {
             },
       style: ConstantsFonts.textFiledFont,
       obscureText: obscureText == null || obscureText == false ? false : true,
-      obscuringCharacter: "⬮",
       keyboardType: keyboardType,
       textAlign: textAlign,
       onChanged: onChange,

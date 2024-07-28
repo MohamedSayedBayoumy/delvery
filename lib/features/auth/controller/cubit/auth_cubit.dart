@@ -23,10 +23,10 @@ class AuthCubit extends Cubit<AuthState> {
 
   AuthRepository authRepository;
 
-  register() async {
+  register(context) async {
     emit(LoadingAuth());
     final result = await authRepository.register(
-      model: RegisterParamModel(
+      model: AuthParamModel(
         email: emailController.text,
         name: fullNameController.text,
         password: passwordController.text,
@@ -34,6 +34,7 @@ class AuthCubit extends Cubit<AuthState> {
         confirmPassword: confirmController.text,
       ),
     );
+    Navigator.pop(context);
 
     result.fold(
       (l) {
@@ -49,21 +50,35 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-  bool isChecked = false;
+  login(context) async {
+    emit(LoadingAuth());
+    final result = await authRepository.login(
+      model: AuthParamModel(
+        email: emailController.text,
+        password: passwordController.text,
+      ),
+    );
 
-  Color getColor(Set<WidgetState> states) {
-    const Set<WidgetState> interactiveStates = <WidgetState>{
-      WidgetState.pressed,
-      WidgetState.hovered,
-      WidgetState.focused,
-    };
-    if (states.any(interactiveStates.contains)) {
-      return Colors.white;
-    }
-    return Colors.white;
+    Navigator.pop(context);
+
+    result.fold(
+      (l) {
+        emit(FailureAuth(message: l.message));
+      },
+      (r) {
+        emit(SuccessAuth());
+      },
+    );
   }
 
   resetValues() {
     emit(AuthInitial());
+  }
+
+  bool showPassword = true;
+
+  toggleShowPassword() {
+    showPassword = !showPassword;
+    emit(ShowPassword());
   }
 }

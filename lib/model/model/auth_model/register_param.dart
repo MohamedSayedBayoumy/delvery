@@ -1,11 +1,11 @@
-class RegisterParamModel {
+class AuthParamModel {
   String? phoneNumber;
   String? name;
   String? email;
   String? password;
   String? confirmPassword;
 
-  RegisterParamModel({
+  AuthParamModel({
     this.phoneNumber = "",
     this.name = "",
     this.email = "",
@@ -13,7 +13,7 @@ class RegisterParamModel {
     this.confirmPassword = "",
   });
 
-  RegisterParamModel.fromJson(Map<String, dynamic> json) {
+  AuthParamModel.fromJson(Map<String, dynamic> json) {
     phoneNumber = json['phone_number'] ?? "";
     name = json['name'] ?? "";
     email = json['email'] ?? "";
@@ -21,13 +21,20 @@ class RegisterParamModel {
     confirmPassword = json['confirm_password'] ?? "";
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> registerToJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['phone_number'] = phoneNumber;
     data['name'] = name;
     data['email'] = email;
     data['password'] = password;
     data['confirm_password'] = confirmPassword;
+    return data;
+  }
+
+  Map<String, dynamic> loginToJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['email'] = email;
+    data['password'] = password;
     return data;
   }
 }
