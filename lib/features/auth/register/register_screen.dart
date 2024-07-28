@@ -34,6 +34,16 @@ class RegisterScreen extends StatelessWidget {
                         const UploadDocumentScreen(),
                       );
                     } else if (state is FailureAuth) {
+                      final snackBar = SnackBar(
+                        content: const Text('Yay! A SnackBar!'),
+                        action: SnackBarAction(
+                          label: 'Undo',
+                          onPressed: () {
+                            // Some code to undo the change.
+                          },
+                        ),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     } else {}
                   },
                   builder: (context, state) {
@@ -129,8 +139,11 @@ class RegisterScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 40.0),
-                        const CustomButton(
+                        CustomButton(
                           buttonText: "Create New Account",
+                          onPressed: () {
+                            cubit.register();
+                          },
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 15.0),

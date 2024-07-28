@@ -5,19 +5,20 @@ class RegisterParamModel {
   String? password;
   String? confirmPassword;
 
-  RegisterParamModel(
-      {this.phoneNumber,
-      this.name,
-      this.email,
-      this.password,
-      this.confirmPassword});
+  RegisterParamModel({
+    this.phoneNumber = "",
+    this.name = "",
+    this.email = "",
+    this.password = "",
+    this.confirmPassword = "",
+  });
 
   RegisterParamModel.fromJson(Map<String, dynamic> json) {
-    phoneNumber = json['phone_number'];
-    name = json['name'];
-    email = json['email'];
-    password = json['password'];
-    confirmPassword = json['confirm_password'];
+    phoneNumber = json['phone_number'] ?? "";
+    name = json['name'] ?? "";
+    email = json['email'] ?? "";
+    password = json['password'] ?? "";
+    confirmPassword = json['confirm_password'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

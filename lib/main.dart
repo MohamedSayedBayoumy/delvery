@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mts/features/auth/login/login_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'core/services/get_it/single_tone.dart';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
             child: child!,
           );
         },
-        home: const BottomNavigationBarScreens(),
+        home: const LoginScreen(),
       ),
     );
   }
