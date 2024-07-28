@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mts/core/utils/navigation.dart';
+import 'package:mts/features/login/login_screen.dart';
+import 'package:mts/features/profile/change_password_screeen.dart';
+import 'package:mts/features/profile/language_screen.dart';
 import 'package:mts/features/profile/my_cash.dart';
 import 'package:mts/features/profile/my_document.dart';
 import '../../core/widgets/custom_padding.dart';
@@ -15,69 +19,77 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("My Profile"),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: CustomPadding(
           child: Column(
             children: [
-              ProfileCardWidget(),
-              SizedBox(height: 10.0),
-              ListTileWidget(
+              const ProfileCardWidget(),
+              const SizedBox(height: 10.0),
+              const ListTileWidget(
                 title: "My Documents",
                 icon: Icons.edit_document,
                 to: MyDocumentScreen(),
               ),
-              Divider(
+              const Divider(
                 height: 0.1,
               ),
-              ListTileWidget(
+              const ListTileWidget(
                 title: "History",
                 icon: Icons.history,
                 to: HistoryScreen(),
               ),
-              Divider(
+              const Divider(
                 height: 0.1,
               ),
-              ListTileWidget(
+              const ListTileWidget(
                 title: "My Cash Balance",
                 icon: Icons.wallet_rounded,
                 to: MyCashBalanceScreen(),
               ),
-              Divider(
+              const Divider(
                 height: 0.1,
               ),
-              ListTileWidget(
+              const ListTileWidget(
                 title: "Earning History",
                 icon: Icons.grading_sharp,
               ),
-              Divider(
+              const Divider(
                 height: 0.1,
               ),
-              ListTileWidget(
+              const ListTileWidget(
                 title: "Change Password",
                 icon: Icons.password,
+                to: ChangePasswordScreeen(),
               ),
-              Divider(
+              const Divider(
                 height: 0.1,
               ),
-              ListTileWidget(
+              const ListTileWidget(
                 title: "FAQs",
                 icon: Icons.question_mark_rounded,
               ),
-              Divider(
+              const Divider(
                 height: 0.1,
               ),
-              ListTileWidget(
+              const ListTileWidget(
                 title: "Language",
                 icon: Icons.language_rounded,
+                to: LanguageScreen(),
               ),
-              Divider(
+              const Divider(
                 height: 0.1,
               ),
               ListTileWidget(
                 title: "Sing Out",
                 icon: Icons.login_sharp,
+                onTap: () {
+                  NavigationHelper.navigateRemoveUntilTo(
+                    context,
+                    const LoginScreen(),
+                  );
+                },
               ),
-              Divider(
+              const Divider(
                 height: 0.1,
               ),
             ],

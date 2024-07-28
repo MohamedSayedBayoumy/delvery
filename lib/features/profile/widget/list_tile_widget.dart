@@ -8,20 +8,23 @@ class ListTileWidget extends StatelessWidget {
     required this.title,
     this.icon,
     this.to,
+    this.onTap,
   });
 
   final String title;
   final IconData? icon;
   final Widget? to;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: .2.h),
       child: ListTile(
-        onTap: () {
-          NavigationHelper.navigateTo(context, to!);
-        },
+        onTap: onTap ??
+            () {
+              NavigationHelper.navigateTo(context, to!);
+            },
         leading: Icon(
           icon,
           color: Colors.black,

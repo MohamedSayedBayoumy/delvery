@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mts/features/bottom_navigation/bottom_navigation_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'features/profile/change_password_screeen.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
             child: child!,
           );
         },
-        home: const LanguageScreen(),
+        home: const BottomNavigationBarScreens(),
       ),
     );
   }
