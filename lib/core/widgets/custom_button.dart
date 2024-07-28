@@ -16,6 +16,7 @@ class CustomButton extends StatelessWidget {
   final double? width;
   final double? height;
   final double? fontSize;
+  final double? raduis;
   final bool? handleTextColor;
   final Color? fontColor;
 
@@ -33,6 +34,7 @@ class CustomButton extends StatelessWidget {
     this.borderColor,
     this.handleTextColor = true,
     this.fontColor,
+    this.raduis,
   });
 
   @override
@@ -51,7 +53,7 @@ class CustomButton extends StatelessWidget {
           ),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(13.0),
+              borderRadius: BorderRadius.circular(raduis ?? 13.0),
               side: BorderSide(
                 color: borderColor ?? ConstantsColor.greenColor,
               ),

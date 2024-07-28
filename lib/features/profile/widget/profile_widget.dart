@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../core/constants/colors.dart';
+import '../../../core/utils/navigation.dart';
+import '../edit_profile.dart';
 
 class ProfileCardWidget extends StatelessWidget {
   const ProfileCardWidget({super.key});
@@ -31,28 +33,36 @@ class ProfileCardWidget extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 15.0),
                   child: Text("mohamed@gamil.com"),
                 ),
-                Container(
-                  width: 130.0,
-                  padding: const EdgeInsets.symmetric(vertical: 5.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.black,
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.edit,
-                        color: ConstantsColor.greenColor,
-                      ),
-                      SizedBox(width: 10.0),
-                      Text(
-                        "Edit Profile",
-                        style: TextStyle(
+                InkWell(
+                  onTap: () {
+                    NavigationHelper.navigateTo(
+                      context,
+                      const EditProfileScreen(),
+                    );
+                  },
+                  child: Container(
+                    width: 130.0,
+                    padding: const EdgeInsets.symmetric(vertical: 5.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                      color: Colors.black,
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.edit,
                           color: ConstantsColor.greenColor,
                         ),
-                      ),
-                    ],
+                        SizedBox(width: 10.0),
+                        Text(
+                          "Edit Profile",
+                          style: TextStyle(
+                            color: ConstantsColor.greenColor,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 )
               ],
