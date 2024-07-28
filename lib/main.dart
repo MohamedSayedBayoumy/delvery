@@ -4,6 +4,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'features/bottom_navigation/bottom_navigation_screen.dart';
 import 'features/profile/history_screen.dart';
+import 'features/profile/my_cash.dart';
 import 'features/profile/my_document.dart';
 
 void main() {
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
             child: child!,
           );
         },
-        home: const HistoryScreen(),
+        home: const MyCashBalanceScreen(),
       ),
     );
   }

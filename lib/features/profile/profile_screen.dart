@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mts/features/profile/my_cash.dart';
 import 'package:mts/features/profile/my_document.dart';
 import '../../core/widgets/custom_padding.dart';
 import 'history_screen.dart';
@@ -39,6 +40,7 @@ class ProfileScreen extends StatelessWidget {
               ListTileWidget(
                 title: "My Cash Balance",
                 icon: Icons.wallet_rounded,
+                to: MyCashBalanceScreen(),
               ),
               Divider(
                 height: 0.1,
