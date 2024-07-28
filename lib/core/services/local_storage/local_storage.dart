@@ -5,6 +5,8 @@ class SecureLocalStorage {
 
   static String userRegistrationKey = "userRegistrationKey";
 
+  static String userTokenKey = "userTokenKey";
+
   static Future<void> set({String? key, String? value}) async {
     await storage.write(key: key!, value: value);
   }

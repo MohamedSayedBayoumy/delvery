@@ -5,6 +5,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'core/services/get_it/single_tone.dart';
 import 'features/bottom_navigation/bottom_navigation_screen.dart';
+import 'features/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
             child: child!,
           );
         },
-        home: const LoginScreen(),
+        home: const SplashScreen(),
       ),
     );
   }

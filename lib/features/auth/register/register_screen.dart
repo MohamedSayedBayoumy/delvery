@@ -101,9 +101,15 @@ class RegisterScreen extends StatelessWidget {
                           labelText: "Enter Your Password",
                           hinText: "Enter Your Password",
                           controller: cubit.passwordController,
+                          obscureText: cubit.showPassword,
+                          maxLines: 1,
                           suffixWidget: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.visibility_outlined),
+                            onPressed: () {
+                              cubit.toggleShowPassword();
+                            },
+                            icon: Icon(cubit.showPassword == true
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined),
                           ),
                         ),
                         const SizedBox(height: 15.0),
@@ -113,9 +119,15 @@ class RegisterScreen extends StatelessWidget {
                           labelText: "Enter Your Confirm Password",
                           hinText: "Enter Your Confirm Password",
                           controller: cubit.confirmController,
+                          obscureText: cubit.showPassword,
+                          maxLines: 1,
                           suffixWidget: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.visibility_outlined),
+                            onPressed: () {
+                              cubit.toggleShowPassword();
+                            },
+                            icon: Icon(cubit.showPassword == true
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined),
                           ),
                         ),
                         const SizedBox(height: 40.0),

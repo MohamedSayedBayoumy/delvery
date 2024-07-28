@@ -40,10 +40,10 @@ class AuthCubit extends Cubit<AuthState> {
       (l) {
         emit(FailureAuth(message: l.message));
       },
-      (r) {
-        SecureLocalStorage.set(
+      (r) async {
+        await SecureLocalStorage.set(
           key: SecureLocalStorage.userRegistrationKey,
-          value: "true",
+          value: "false",
         );
         emit(SuccessAuth());
       },
@@ -51,6 +51,31 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   login(context) async {
+    emit(LoadingAuth());
+    final result = await authRepository.login(
+      model: AuthParamModel(
+        email: emailController.text,
+        password: passwordController.text,
+      ),
+    );
+
+    Navigator.pop(context);
+
+    result.fold(
+      (l) {
+        emit(FailureAuth(message: l.message));
+      },
+      (r) async {
+        await SecureLocalStorage.set(
+          key: SecureLocalStorage.userTokenKey,
+          value: r.data!.token,
+        );
+        emit(SuccessAuth());
+      },
+    );
+  }
+
+  uploadDocument(context) async {
     emit(LoadingAuth());
     final result = await authRepository.login(
       model: AuthParamModel(
