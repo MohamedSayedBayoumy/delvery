@@ -29,7 +29,7 @@ class AuthImple implements AuthRepository {
       log(" ccc ${e.response!.data}");
 
       return Left(FailureCase(
-        message: e.response!.data["message"],
+        message: e.response!.data["message"] ?? "Something is wrong",
         status: e.response!.data["status"],
       ));
     }
