@@ -80,6 +80,11 @@ class AuthCubit extends Cubit<AuthState> {
           key: SecureLocalStorage.userTokenKey,
           value: r.data!.token,
         );
+
+        await SecureLocalStorage.set(
+          key: SecureLocalStorage.userCompeleteRequriedData,
+          value: "false",
+        );
         emit(SuccessAuth());
       },
     );

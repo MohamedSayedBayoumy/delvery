@@ -29,7 +29,7 @@ class SplashScreen extends StatelessWidget {
 
   routing(_, context) async {
     final checkUserCompeleteData = await SecureLocalStorage.get(
-      SecureLocalStorage.userRegistrationKey,
+      SecureLocalStorage.userCompeleteRequriedData,
     );
     final token = await SecureLocalStorage.get(
       SecureLocalStorage.userTokenKey,

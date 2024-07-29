@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
               child: BlocConsumer<AuthCubit, AuthState>(
                 listener: (context, state) {
                   if (state is SuccessAuth) {
-                    NavigationHelper.navigateTo(
+                    NavigationHelper.navigateRemoveUntilTo(
                       context,
                       const UploadDocumentScreen(),
                     );

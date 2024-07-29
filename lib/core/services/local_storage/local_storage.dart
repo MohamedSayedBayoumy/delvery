@@ -3,7 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class SecureLocalStorage {
   static const FlutterSecureStorage storage = FlutterSecureStorage();
 
-  static String userRegistrationKey = "userRegistrationKey";
+  static String userCompeleteRequriedData = "userCompeleteRequriedData";
 
   static String userTokenKey = "userTokenKey";
 
