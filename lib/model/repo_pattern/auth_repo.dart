@@ -73,20 +73,21 @@ class AuthImple implements AuthRepository {
   @override
   Future<Either<FailureHandler, GlobalResponseModel>> uploadDocument(
       {UploadDocParamModel? model}) async {
+    log("######### ${InitialValues.userToken}");
     try {
       final response = await DioServices.put(
         url: Api.uploadDocument,
         headers: {
-          'Authorization': InitialValues.userToken,
+          'Authorization': "Bearer ${InitialValues.userToken}",
         },
         data: FormData.fromMap({
           'files': [
             await MultipartFile.fromFile(
-              model!.drivingLicenseImage,
+              model!.drivingLicenseImage.toString(),
               filename: model.drivingLicenseImage,
             ),
             await MultipartFile.fromFile(
-              model.nationalIDImage,
+              model.nationalIDImage.toString(),
               filename: model.nationalIDImage,
             )
           ],
