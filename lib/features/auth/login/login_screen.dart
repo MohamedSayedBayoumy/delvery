@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mts/core/functions/loading_ui.dart';
-import 'package:mts/core/services/get_it/single_tone.dart';
-import 'package:mts/features/bottom_navigation/bottom_navigation_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../../core/functions/loading_ui.dart';
+import '../../../core/services/get_it/single_tone.dart';
 import '../../../core/utils/navigation.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_padding.dart';
 import '../../../core/widgets/custom_text_filed.dart';
 import '../controller/cubit/auth_cubit.dart';
 import '../register/register_screen.dart';
+import '../register/upload_document.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -28,7 +28,7 @@ class LoginScreen extends StatelessWidget {
                   if (state is SuccessAuth) {
                     NavigationHelper.navigateTo(
                       context,
-                      const BottomNavigationBarScreens(),
+                      const UploadDocumentScreen(),
                     );
                   } else if (state is FailureAuth) {
                     final snackBar = SnackBar(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mts/core/widgets/custom_button.dart';
-import 'package:mts/core/widgets/custom_padding.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../core/constants/colors.dart';
+import '../../../core/widgets/custom_button.dart';
+import '../../../core/widgets/custom_padding.dart';
 
 class SelectLocationScreen extends StatelessWidget {
   const SelectLocationScreen({super.key});

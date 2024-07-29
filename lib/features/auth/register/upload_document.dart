@@ -11,6 +11,7 @@ import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_padding.dart';
 import '../../../core/widgets/custom_text_filed.dart';
 import '../controller/cubit/auth_cubit.dart';
+import 'set_location.dart';
 import 'widget/container_upload_widget.dart';
 
 class UploadDocumentScreen extends StatelessWidget {
@@ -40,7 +41,7 @@ class UploadDocumentScreen extends StatelessWidget {
                       if (state is SuccessAuth) {
                         NavigationHelper.navigateRemoveUntilTo(
                           context,
-                          const UploadDocumentScreen(),
+                          const SelectLocationScreen(),
                         );
                       } else if (state is FailureAuth) {
                         final snackBar = SnackBar(
