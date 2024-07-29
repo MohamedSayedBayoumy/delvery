@@ -87,9 +87,14 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
+  TextEditingController vehicleNumber = TextEditingController();
+  TextEditingController licenceNumber = TextEditingController();
   List<String> types = ['Car', 'bike', 'bicycle'];
   String type = 'Car';
   String typeNumber = '1';
+
+  String drivingLicense = '';
+  String nationalID = '';
 
   typeVehicle(value) {
     if (value == 'Car') {
@@ -105,9 +110,15 @@ class AuthCubit extends Cubit<AuthState> {
     emit(ChangeVehicleType());
   }
 
-  TextEditingController vehicleType = TextEditingController();
-  TextEditingController vehicleNumber = TextEditingController();
-  TextEditingController licenceNumber = TextEditingController();
+  selectDriveLicense(image) {
+    drivingLicense = image;
+    emit(LicenseImage());
+  }
+
+  selectOneNational(image) {
+    nationalID = image;
+    emit(NationalImage());
+  }
 
   uploadDocument(context) async {
     emit(LoadingAuth());

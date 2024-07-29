@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../core/constants/colors.dart';
+import '../../../core/functions/take_image_dialog.dart';
 import '../../../core/services/get_it/single_tone.dart';
 import '../../../core/utils/navigation.dart';
 import '../../../core/widgets/custom_button.dart';
@@ -92,14 +95,40 @@ class UploadDocumentScreen extends StatelessWidget {
                           const SizedBox(height: 15.0),
                           const Text("Upload Your Driving License"),
                           const SizedBox(height: 14.0),
-                          const ContainerUploadWidget(
-                            title: "License Image",
+                          ContainerUploadWidget(
+                            title: cubit.drivingLicense == ''
+                                ? "License Image"
+                                : cubit.drivingLicense.split("/").last,
+                            onTap: () {
+                              openBottomSheet(
+                                context,
+                                onChangedCamera: (camera) {
+                                  cubit.selectDriveLicense(camera);
+                                },
+                                onChangedImage: (image) {
+                                  cubit.selectDriveLicense(image);
+                                },
+                              );
+                            },
                           ),
                           const SizedBox(height: 15.0),
                           const Text("Upload Your One of National ID"),
                           const SizedBox(height: 14.0),
-                          const ContainerUploadWidget(
-                            title: "License Image",
+                          ContainerUploadWidget(
+                            title: cubit.nationalID == ''
+                                ? "National ID"
+                                : cubit.nationalID.split("/").last,
+                            onTap: () {
+                              openBottomSheet(
+                                context,
+                                onChangedCamera: (camera) {
+                                  cubit.selectOneNational(camera);
+                                },
+                                onChangedImage: (image) {
+                                  cubit.selectOneNational(image);
+                                },
+                              );
+                            },
                           )
                         ],
                       );
@@ -108,6 +137,7 @@ class UploadDocumentScreen extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 10.0),
             const Text(
               "For upload image of your document please attach the file of",
               style: TextStyle(color: Colors.black, fontSize: 10.0),

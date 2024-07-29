@@ -5,33 +5,37 @@ import '../../../../core/constants/colors.dart';
 
 class ContainerUploadWidget extends StatelessWidget {
   final String title;
-  const ContainerUploadWidget({
-    super.key,
-    required this.title,
-  });
+  final void Function()? onTap;
+  const ContainerUploadWidget({super.key, required this.title, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-      decoration: BoxDecoration(
-        color: ConstantsColor.fillTextFiled,
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-      width: 100.w,
-      height: 6.0.h,
-      child: Row(
-        children: [
-          Text(
-            title,
-            style: const TextStyle(color: Colors.white),
-          ),
-          const Spacer(),
-          const Icon(
-            Icons.camera_alt_outlined,
-            color: Colors.white,
-          ),
-        ],
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        decoration: BoxDecoration(
+          color: ConstantsColor.fillTextFiled,
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        width: 100.w,
+        height: 6.0.h,
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                title,
+                maxLines: 1,
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+            const SizedBox(width: 10.0),
+            const Icon(
+              Icons.camera_alt_outlined,
+              color: Colors.white,
+            ),
+          ],
+        ),
       ),
     );
   }

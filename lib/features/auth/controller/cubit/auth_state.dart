@@ -18,3 +18,7 @@ final class FailureAuth extends AuthState {
 }
 
 final class ChangeVehicleType extends AuthState {}
+
+final class LicenseImage extends AuthState {}
+final class NationalImage extends AuthState {}
+
