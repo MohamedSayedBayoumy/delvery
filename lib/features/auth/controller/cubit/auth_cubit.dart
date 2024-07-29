@@ -88,9 +88,26 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   List<String> types = ['Car', 'bike', 'bicycle'];
-  String type = "";
+  String type = 'Car';
+  String typeNumber = '1';
+
+  typeVehicle(value) {
+    if (value == 'Car') {
+      type = 'Car';
+      typeNumber = '1';
+    } else if (value == 'bike') {
+      type = 'bike';
+      typeNumber = '2';
+    } else {
+      type = 'bicycle';
+      typeNumber = '3';
+    }
+    emit(ChangeVehicleType());
+  }
+
   TextEditingController vehicleType = TextEditingController();
   TextEditingController vehicleNumber = TextEditingController();
+  TextEditingController licenceNumber = TextEditingController();
 
   uploadDocument(context) async {
     emit(LoadingAuth());

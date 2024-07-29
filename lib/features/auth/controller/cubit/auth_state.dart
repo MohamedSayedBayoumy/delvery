@@ -16,3 +16,5 @@ final class FailureAuth extends AuthState {
 
   FailureAuth({required this.message});
 }
+
+final class ChangeVehicleType extends AuthState {}

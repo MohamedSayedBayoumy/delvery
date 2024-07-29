@@ -68,7 +68,9 @@ class UploadDocumentScreen extends StatelessWidget {
                                   child: Text(value),
                                 );
                               }).toList(),
-                              onChanged: (_) {},
+                              onChanged: (value) {
+                                cubit.typeVehicle(value);
+                              },
                             ),
                           ),
                           const SizedBox(height: 15.0),
@@ -77,7 +79,7 @@ class UploadDocumentScreen extends StatelessWidget {
                           CustomTextField(
                             labelText: "Enter Vehicle Number",
                             hinText: "Enter Vehicle Number",
-                            controller: TextEditingController(),
+                            controller: cubit.vehicleNumber,
                           ),
                           const SizedBox(height: 15.0),
                           const Text("Licence Number"),
@@ -85,7 +87,7 @@ class UploadDocumentScreen extends StatelessWidget {
                           CustomTextField(
                             labelText: "Enter Licence Number",
                             hinText: "Enter Licence Number",
-                            controller: TextEditingController(),
+                            controller: cubit.licenceNumber,
                           ),
                           const SizedBox(height: 15.0),
                           const Text("Upload Your Driving License"),
