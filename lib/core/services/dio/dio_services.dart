@@ -30,6 +30,17 @@ class DioServices {
     return request;
   }
 
+  static Future<Response> put(
+      {String? url, dynamic data, Map<String, dynamic>? headers}) async {
+    log("Api is ()=> ${Api.baseUrl}$url");
+    final request = await dio.put(
+      "${Api.baseUrl}$url",
+      data: data,
+    );
+
+    return request;
+  }
+
   static Future<Response> get(
       {String? url, dynamic data, Map<String, dynamic>? headers}) async {
     log("Api is ()=> $url");

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mts/core/services/local_storage/local_storage.dart';
 
+import '../../../../core/services/local_storage/local_storage.dart';
 import '../../../../model/model/auth_model/register_param.dart';
+import '../../../../model/model/auth_model/upload_doc_param_model.dart';
 import '../../../../model/repo_pattern/auth_repo.dart';
 
 part 'auth_state.dart';
@@ -48,11 +49,8 @@ class AuthCubit extends Cubit<AuthState> {
         }
       },
       (r) async {
-        await SecureLocalStorage.set(
-          key: SecureLocalStorage.userRegistrationKey,
-          value: "false",
-        );
         emit(SuccessAuth());
+        resetValues();
       },
     );
   }
@@ -87,45 +85,49 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-  TextEditingController vehicleNumber = TextEditingController();
-  TextEditingController licenceNumber = TextEditingController();
+  TextEditingController vehicleNumberController = TextEditingController();
+  TextEditingController licenceNumberController = TextEditingController();
+
   List<String> types = ['Car', 'bike', 'bicycle'];
   String type = 'Car';
-  String typeNumber = '1';
+  String typeCarNumber = '1';
 
-  String drivingLicense = '';
-  String nationalID = '';
+  String drivingLicenseImage = '';
+  String nationalIDImage = '';
 
   typeVehicle(value) {
     if (value == 'Car') {
       type = 'Car';
-      typeNumber = '1';
+      typeCarNumber = '1';
     } else if (value == 'bike') {
       type = 'bike';
-      typeNumber = '2';
+      typeCarNumber = '2';
     } else {
       type = 'bicycle';
-      typeNumber = '3';
+      typeCarNumber = '3';
     }
     emit(ChangeVehicleType());
   }
 
   selectDriveLicense(image) {
-    drivingLicense = image;
+    drivingLicenseImage = image;
     emit(LicenseImage());
   }
 
   selectOneNational(image) {
-    nationalID = image;
+    nationalIDImage = image;
     emit(NationalImage());
   }
 
   uploadDocument(context) async {
     emit(LoadingAuth());
-    final result = await authRepository.login(
-      model: AuthParamModel(
-        email: emailController.text,
-        password: passwordController.text,
+    final result = await authRepository.uploadDocument(
+      model: UploadDocParamModel(
+        carType: typeCarNumber,
+        vehicleNumber: vehicleNumberController.text,
+        licenseNumber: licenceNumberController.text,
+        drivingLicenseImage: drivingLicenseImage,
+        nationalIDImage: nationalIDImage,
       ),
     );
 

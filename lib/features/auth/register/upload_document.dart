@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../core/constants/colors.dart';
+import '../../../core/functions/loading_ui.dart';
 import '../../../core/functions/take_image_dialog.dart';
 import '../../../core/services/get_it/single_tone.dart';
 import '../../../core/utils/navigation.dart';
@@ -12,7 +11,6 @@ import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_padding.dart';
 import '../../../core/widgets/custom_text_filed.dart';
 import '../controller/cubit/auth_cubit.dart';
-import 'set_location.dart';
 import 'widget/container_upload_widget.dart';
 
 class UploadDocumentScreen extends StatelessWidget {
@@ -38,7 +36,22 @@ class UploadDocumentScreen extends StatelessWidget {
                 child: BlocProvider<AuthCubit>(
                   create: (context) => sl<AuthCubit>(),
                   child: BlocConsumer<AuthCubit, AuthState>(
-                    listener: (context, state) {},
+                    listener: (context, state) {
+                      if (state is SuccessAuth) {
+                        NavigationHelper.navigateRemoveUntilTo(
+                          context,
+                          const UploadDocumentScreen(),
+                        );
+                      } else if (state is FailureAuth) {
+                        final snackBar = SnackBar(
+                          backgroundColor: Colors.red,
+                          content: Text(state.message),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      } else if (state is LoadingAuth) {
+                        loadingAlert(context);
+                      } else {}
+                    },
                     builder: (context, state) {
                       final cubit = AuthCubit.get(context);
 
@@ -82,7 +95,7 @@ class UploadDocumentScreen extends StatelessWidget {
                           CustomTextField(
                             labelText: "Enter Vehicle Number",
                             hinText: "Enter Vehicle Number",
-                            controller: cubit.vehicleNumber,
+                            controller: cubit.vehicleNumberController,
                           ),
                           const SizedBox(height: 15.0),
                           const Text("Licence Number"),
@@ -90,15 +103,15 @@ class UploadDocumentScreen extends StatelessWidget {
                           CustomTextField(
                             labelText: "Enter Licence Number",
                             hinText: "Enter Licence Number",
-                            controller: cubit.licenceNumber,
+                            controller: cubit.licenceNumberController,
                           ),
                           const SizedBox(height: 15.0),
                           const Text("Upload Your Driving License"),
                           const SizedBox(height: 14.0),
                           ContainerUploadWidget(
-                            title: cubit.drivingLicense == ''
+                            title: cubit.drivingLicenseImage == ''
                                 ? "License Image"
-                                : cubit.drivingLicense.split("/").last,
+                                : cubit.drivingLicenseImage.split("/").last,
                             onTap: () {
                               openBottomSheet(
                                 context,
@@ -115,9 +128,9 @@ class UploadDocumentScreen extends StatelessWidget {
                           const Text("Upload Your One of National ID"),
                           const SizedBox(height: 14.0),
                           ContainerUploadWidget(
-                            title: cubit.nationalID == ''
+                            title: cubit.nationalIDImage == ''
                                 ? "National ID"
-                                : cubit.nationalID.split("/").last,
+                                : cubit.nationalIDImage.split("/").last,
                             onTap: () {
                               openBottomSheet(
                                 context,
@@ -152,10 +165,7 @@ class UploadDocumentScreen extends StatelessWidget {
               height: 7.h,
               buttonText: "Done , Let's go!",
               onPressed: () {
-                NavigationHelper.navigateTo(
-                  context,
-                  const SelectLocationScreen(),
-                );
+                context.read<AuthCubit>().uploadDocument(context);
               },
             ),
             const SizedBox(height: 10.0),

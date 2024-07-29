@@ -7,12 +7,10 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../core/functions/loading_ui.dart';
 import '../../../core/services/get_it/single_tone.dart';
-import '../../../core/utils/navigation.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_padding.dart';
 import '../../../core/widgets/custom_text_filed.dart';
 import '../controller/cubit/auth_cubit.dart';
-import 'upload_document.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -32,10 +30,7 @@ class RegisterScreen extends StatelessWidget {
                 child: BlocConsumer<AuthCubit, AuthState>(
                   listener: (context, state) {
                     if (state is SuccessAuth) {
-                      NavigationHelper.navigateRemoveUntilTo(
-                        context,
-                        const UploadDocumentScreen(),
-                      );
+                      Navigator.pop(context);
                     } else if (state is FailureAuth) {
                       final snackBar = SnackBar(
                         backgroundColor: Colors.red,

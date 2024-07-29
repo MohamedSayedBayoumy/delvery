@@ -1,18 +1,24 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mts/core/services/local_storage/local_storage.dart';
+import 'package:mts/core/utils/initial_values.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'core/services/get_it/single_tone.dart';
 import 'features/splash_screen.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ServicesLocator.service();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-
+  InitialValues.userToken =
+      await SecureLocalStorage.get(SecureLocalStorage.userTokenKey);
+  log("user token : ${InitialValues.userToken}");
   runApp(const MyApp());
 }
 

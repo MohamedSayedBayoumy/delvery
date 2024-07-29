@@ -2,12 +2,14 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:mts/core/utils/initial_values.dart';
 
 import '../../core/constants/api.dart';
 import '../../core/error/failure.dart';
 import '../../core/services/dio/dio_services.dart';
 import '../model/auth_model/login_response.dart';
 import '../model/auth_model/register_param.dart';
+import '../model/auth_model/upload_doc_param_model.dart';
 import '../model/global_response.dart';
 
 abstract class AuthRepository {
@@ -17,8 +19,8 @@ abstract class AuthRepository {
   Future<Either<FailureHandler, LoginResponseModel>> login(
       {AuthParamModel model});
 
-  // Future<Either<FailureHandler, LoginResponseModel>> uploadDocument(
-  //     {AuthParamModel model});
+  Future<Either<FailureHandler, GlobalResponseModel>> uploadDocument(
+      {UploadDocParamModel model});
 }
 
 class AuthImple implements AuthRepository {
@@ -68,10 +70,43 @@ class AuthImple implements AuthRepository {
     }
   }
 
-  // @override
-  // Future<Either<FailureHandler, LoginResponseModel>> uploadDocument(
-  //     {AuthParamModel model}) {
-  //   // TODO: implement uploadDocument
-  //   throw UnimplementedError();
-  // }
+  @override
+  Future<Either<FailureHandler, GlobalResponseModel>> uploadDocument(
+      {UploadDocParamModel? model}) async {
+    try {
+      final response = await DioServices.put(
+        url: Api.uploadDocument,
+        headers: {
+          'Authorization': InitialValues.userToken,
+        },
+        data: FormData.fromMap({
+          'files': [
+            await MultipartFile.fromFile(
+              model!.drivingLicenseImage,
+              filename: model.drivingLicenseImage,
+            ),
+            await MultipartFile.fromFile(
+              model.nationalIDImage,
+              filename: model.nationalIDImage,
+            )
+          ],
+          'car_type': model.carType,
+          'car_number': model.vehicleNumber,
+          'license_number': model.licenseNumber,
+        }),
+      );
+
+      return Right(GlobalResponseModel.fromJson(response.data));
+    } on DioException catch (e) {
+      log("${e.response!.data}");
+
+      return Left(
+        FailureCase(
+          message: e.response!.data["message"] ?? "Something is wrong",
+          status: e.response!.data["status"],
+          failuresCases: e.response!.data["data"] ?? [],
+        ),
+      );
+    }
+  }
 }
