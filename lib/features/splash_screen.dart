@@ -1,12 +1,13 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:mts/features/bottom_navigation/bottom_navigation_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../core/services/local_storage/local_storage.dart';
+import '../core/utils/initial_values.dart';
 import '../core/utils/navigation.dart';
 import 'auth/login/login_screen.dart';
 import 'auth/register/upload_document.dart';
+import 'bottom_navigation/bottom_navigation_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -31,15 +32,12 @@ class SplashScreen extends StatelessWidget {
     final checkUserCompeleteData = await SecureLocalStorage.get(
       SecureLocalStorage.userCompeleteRequriedData,
     );
-    final token = await SecureLocalStorage.get(
-      SecureLocalStorage.userTokenKey,
-    );
     if (checkUserCompeleteData == "false") {
       NavigationHelper.navigateRemoveUntilTo(
         context,
         const UploadDocumentScreen(),
       );
-    } else if (token == "empty") {
+    } else if (InitialValues.userToken == "empty") {
       NavigationHelper.navigateRemoveUntilTo(context, const LoginScreen());
     } else {
       NavigationHelper.navigateRemoveUntilTo(
