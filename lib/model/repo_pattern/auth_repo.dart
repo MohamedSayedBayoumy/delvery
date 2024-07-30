@@ -21,6 +21,8 @@ abstract class AuthRepository {
 
   Future<Either<FailureHandler, GlobalResponseModel>> uploadDocument(
       {UploadDocParamModel model});
+
+  Future<Either<FailureHandler, GlobalResponseModel>> logout();
 }
 
 class AuthImple implements AuthRepository {
@@ -81,16 +83,6 @@ class AuthImple implements AuthRepository {
           'Authorization': "Bearer ${InitialValues.userToken}",
         },
         data: FormData.fromMap({
-          // 'files': [
-          //   await MultipartFile.fromFile(
-          //     model!.drivingLicenseImage.toString(),
-          //     filename: model.drivingLicenseImage,
-          //   ),
-          //   await MultipartFile.fromFile(
-          //     model.nationalIDImage.toString(),
-          //     filename: model.nationalIDImage,
-          //   )
-          // ],
           'license_image': await MultipartFile.fromFile(
             model!.drivingLicenseImage.toString(),
             filename: model.drivingLicenseImage,
@@ -103,6 +95,33 @@ class AuthImple implements AuthRepository {
           'car_number': model.vehicleNumber,
           'license_number': model.licenseNumber,
         }),
+      );
+
+      return Right(GlobalResponseModel.fromJson(response.data));
+    } on DioException catch (e) {
+      log("${e.response!.data}");
+
+      return Left(
+        FailureCase(
+          message: e.response!.data["message"] ?? "Something is wrong",
+          status: e.response!.data["status"],
+          failuresCases: e.response!.data["data"] ?? [],
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<FailureHandler, GlobalResponseModel>> logout() async {
+    log("######### ${InitialValues.userToken}");
+    try {
+      final response = await DioServices.post(
+        url: Api.logout,
+        headers: {
+          'Authorization': "Bearer ${InitialValues.userToken}",
+        },
+        data: FormData.fromMap(
+            {'destroy': '1'}), // 1 =>  logout ,  2 => delete account
       );
 
       return Right(GlobalResponseModel.fromJson(response.data));

@@ -3,4 +3,5 @@ class Api {
   static const register = "/delivery-men/create-delivery-man";
   static const login = "/delivery-men/login";
   static const uploadDocument = "/delivery-men/update-delivery-man-needed-info";
+  static const logout = "/delivery-men/logout";
 }

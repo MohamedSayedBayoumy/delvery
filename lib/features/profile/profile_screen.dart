@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:mts/core/utils/navigation.dart';
-import 'package:mts/features/auth/login/login_screen.dart';
-import 'package:mts/features/profile/change_password_screeen.dart';
-import 'package:mts/features/profile/language_screen.dart';
-import 'package:mts/features/profile/my_cash.dart';
-import 'package:mts/features/profile/my_document.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../core/services/get_it/single_tone.dart';
+import '../../core/utils/navigation.dart';
 import '../../core/widgets/custom_padding.dart';
+import '../auth/login/login_screen.dart';
+import 'change_password_screeen.dart';
+import 'controller/cubit/profile_cubit.dart';
 import 'history_screen.dart';
+import 'language_screen.dart';
+import 'my_cash.dart';
+import 'my_document.dart';
 import 'widget/list_tile_widget.dart';
 import 'widget/profile_widget.dart';
 
@@ -79,15 +82,40 @@ class ProfileScreen extends StatelessWidget {
               const Divider(
                 height: 0.1,
               ),
-              ListTileWidget(
-                title: "Sing Out",
-                icon: Icons.login_sharp,
-                onTap: () {
-                  NavigationHelper.navigateRemoveUntilTo(
-                    context,
-                    const LoginScreen(),
-                  );
-                },
+              BlocProvider<ProfileCubit>(
+                create: (context) => sl<ProfileCubit>(),
+                child: BlocConsumer<ProfileCubit, ProfileState>(
+                  listener: (context, state) {
+                    if (state is SuccessLogout) {
+                      final snackBar = SnackBar(
+                        backgroundColor: Colors.green,
+                        content: Text(state.message),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      NavigationHelper.navigateRemoveUntilTo(
+                        context,
+                        const LoginScreen(),
+                      );
+                    } else if (state is FailureProfileCase) {
+                      final snackBar = SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text(state.message),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    } else {}
+                  },
+                  builder: (context, state) {
+                    final cubit = ProfileCubit.get(context);
+
+                    return ListTileWidget(
+                      title: "Sing Out",
+                      icon: Icons.login_sharp,
+                      onTap: () {
+                        cubit.logout();
+                      },
+                    );
+                  },
+                ),
               ),
               const Divider(
                 height: 0.1,

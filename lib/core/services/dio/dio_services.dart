@@ -25,6 +25,9 @@ class DioServices {
     final request = await dio.post(
       "${Api.baseUrl}$url",
       data: data,
+      options: Options(
+        headers: headers,
+      ),
     );
 
     return request;
