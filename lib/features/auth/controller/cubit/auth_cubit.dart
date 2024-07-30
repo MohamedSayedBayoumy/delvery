@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/services/local_storage/local_storage.dart';
+import '../../../../core/utils/initial_values.dart';
 import '../../../../model/model/auth_model/register_param.dart';
 import '../../../../model/model/auth_model/upload_doc_param_model.dart';
 import '../../../../model/repo_pattern/auth_repo.dart';
@@ -76,6 +77,8 @@ class AuthCubit extends Cubit<AuthState> {
         }
       },
       (r) async {
+        InitialValues.userToken = r.data!.token!;
+
         await SecureLocalStorage.set(
           key: SecureLocalStorage.userTokenKey,
           value: r.data!.token,
