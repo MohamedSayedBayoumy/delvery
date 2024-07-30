@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../core/functions/loading_ui.dart';
 import '../../core/services/get_it/single_tone.dart';
 import '../../core/utils/navigation.dart';
 import '../../core/widgets/custom_padding.dart';
@@ -86,7 +87,9 @@ class ProfileScreen extends StatelessWidget {
                 create: (context) => sl<ProfileCubit>(),
                 child: BlocConsumer<ProfileCubit, ProfileState>(
                   listener: (context, state) {
-                    if (state is SuccessLogout) {
+                    if (state is ProfileLoading) {
+                      loadingAlert(context);
+                    } else if (state is SuccessLogout) {
                       final snackBar = SnackBar(
                         backgroundColor: Colors.green,
                         content: Text(state.message),

@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mts/core/services/local_storage/local_storage.dart';
 
 import '../../../../model/repo_pattern/auth_repo.dart';
 
@@ -12,6 +13,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   AuthRepository authRepository;
 
   logout() async {
+    emit(ProfileLoading());
     final reuslt = await authRepository.logout();
 
     reuslt.fold(
@@ -19,6 +21,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         emit(FailureProfileCase(message: l.message));
       },
       (r) {
+        SecureLocalStorage.disposeAll();
         emit(SuccessLogout(message: "Successfully logged out"));
       },
     );

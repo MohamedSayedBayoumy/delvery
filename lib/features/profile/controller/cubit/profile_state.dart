@@ -4,6 +4,8 @@ sealed class ProfileState {}
 
 final class ProfileInitial extends ProfileState {}
 
+final class ProfileLoading extends ProfileState {}
+
 final class SuccessLogout extends ProfileState {
   final String message;
 
