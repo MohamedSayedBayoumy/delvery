@@ -20,7 +20,11 @@ class SplashScreen extends StatelessWidget {
           delay: const Duration(milliseconds: 500),
           duration: const Duration(milliseconds: 800),
           onFinish: (_) {
-            routing(_, context);
+            // routing(_, context);
+            NavigationHelper.navigateRemoveUntilTo(
+              context,
+              const BottomNavigationBarScreens(),
+            );
           },
           child: Image.asset("assets/LOGO SAFRI.jpg", width: 30.w),
         ),

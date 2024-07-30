@@ -6,4 +6,6 @@ class Api {
   static const logout = "/delivery-men/logout";
 
   static const updateUserImage = "/delivery-men/update-personal-image";
+
+  static const updateUserStatus = "/delivery-men/change-delivery-man-online-status";
 }

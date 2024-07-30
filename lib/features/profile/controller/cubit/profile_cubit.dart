@@ -6,7 +6,7 @@ import '../../../../model/repo_pattern/auth_repo.dart';
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
-  ProfileCubit(this.authRepository) : super(ProfileInitial());
+  ProfileCubit({required this.authRepository}) : super(ProfileInitial());
 
   static ProfileCubit get(context) => BlocProvider.of(context);
 
