@@ -25,105 +25,102 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: CustomPadding(
-          child: Column(
-            children: [
-              const ProfileCardWidget(),
-              const SizedBox(height: 10.0),
-              const ListTileWidget(
-                title: "My Documents",
-                icon: Icons.edit_document,
-                to: MyDocumentScreen(),
-              ),
-              const Divider(
-                height: 0.1,
-              ),
-              const ListTileWidget(
-                title: "History",
-                icon: Icons.history,
-                to: HistoryScreen(),
-              ),
-              const Divider(
-                height: 0.1,
-              ),
-              const ListTileWidget(
-                title: "My Cash Balance",
-                icon: Icons.wallet_rounded,
-                to: MyCashBalanceScreen(),
-              ),
-              const Divider(
-                height: 0.1,
-              ),
-              const ListTileWidget(
-                title: "Earning History",
-                icon: Icons.grading_sharp,
-              ),
-              const Divider(
-                height: 0.1,
-              ),
-              const ListTileWidget(
-                title: "Change Password",
-                icon: Icons.password,
-                to: ChangePasswordScreeen(),
-              ),
-              const Divider(
-                height: 0.1,
-              ),
-              const ListTileWidget(
-                title: "FAQs",
-                icon: Icons.question_mark_rounded,
-              ),
-              const Divider(
-                height: 0.1,
-              ),
-              const ListTileWidget(
-                title: "Language",
-                icon: Icons.language_rounded,
-                to: LanguageScreen(),
-              ),
-              const Divider(
-                height: 0.1,
-              ),
-              BlocProvider<ProfileCubit>(
-                create: (context) => sl<ProfileCubit>(),
-                child: BlocConsumer<ProfileCubit, ProfileState>(
-                  listener: (context, state) {
-                    if (state is ProfileLoading) {
-                      loadingAlert(context);
-                    } else if (state is SuccessLogout) {
-                      final snackBar = SnackBar(
-                        backgroundColor: Colors.green,
-                        content: Text(state.message),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      NavigationHelper.navigateRemoveUntilTo(
-                        context,
-                        const LoginScreen(),
-                      );
-                    } else if (state is FailureProfileCase) {
-                      final snackBar = SnackBar(
-                        backgroundColor: Colors.red,
-                        content: Text(state.message),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    } else {}
-                  },
-                  builder: (context, state) {
-                    final cubit = ProfileCubit.get(context);
+          child: BlocProvider<ProfileCubit>(
+            create: (context) => sl<ProfileCubit>(),
+            child: BlocConsumer<ProfileCubit, ProfileState>(
+              listener: (context, state) {
+                if (state is ProfileLoading) {
+                  loadingAlert(context);
+                } else if (state is SuccessLogout) {
+                  final snackBar = SnackBar(
+                    backgroundColor: Colors.green,
+                    content: Text(state.message),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  NavigationHelper.navigateRemoveUntilTo(
+                    context,
+                    const LoginScreen(),
+                  );
+                } else if (state is FailureProfileCase) {
+                  final snackBar = SnackBar(
+                    backgroundColor: Colors.red,
+                    content: Text(state.message),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                } else {}
+              },
+              builder: (context, state) {
+                final cubit = ProfileCubit.get(context);
 
-                    return ListTileWidget(
+                return Column(
+                  children: [
+                    ProfileCardWidget(profileCubit: cubit),
+                    const SizedBox(height: 10.0),
+                    const ListTileWidget(
+                      title: "My Documents",
+                      icon: Icons.edit_document,
+                      to: MyDocumentScreen(),
+                    ),
+                    const Divider(
+                      height: 0.1,
+                    ),
+                    const ListTileWidget(
+                      title: "History",
+                      icon: Icons.history,
+                      to: HistoryScreen(),
+                    ),
+                    const Divider(
+                      height: 0.1,
+                    ),
+                    const ListTileWidget(
+                      title: "My Cash Balance",
+                      icon: Icons.wallet_rounded,
+                      to: MyCashBalanceScreen(),
+                    ),
+                    const Divider(
+                      height: 0.1,
+                    ),
+                    const ListTileWidget(
+                      title: "Earning History",
+                      icon: Icons.grading_sharp,
+                    ),
+                    const Divider(
+                      height: 0.1,
+                    ),
+                    const ListTileWidget(
+                      title: "Change Password",
+                      icon: Icons.password,
+                      to: ChangePasswordScreeen(),
+                    ),
+                    const Divider(
+                      height: 0.1,
+                    ),
+                    const ListTileWidget(
+                      title: "FAQs",
+                      icon: Icons.question_mark_rounded,
+                    ),
+                    const Divider(
+                      height: 0.1,
+                    ),
+                    const ListTileWidget(
+                      title: "Language",
+                      icon: Icons.language_rounded,
+                      to: LanguageScreen(),
+                    ),
+                    const Divider(
+                      height: 0.1,
+                    ),
+                    ListTileWidget(
                       title: "Sing Out",
                       icon: Icons.login_sharp,
                       onTap: () {
                         cubit.logout();
                       },
-                    );
-                  },
-                ),
-              ),
-              const Divider(
-                height: 0.1,
-              ),
-            ],
+                    ),
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),

@@ -3,10 +3,13 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../core/constants/colors.dart';
 import '../../../core/utils/navigation.dart';
+import '../controller/cubit/profile_cubit.dart';
 import '../edit_profile.dart';
 
 class ProfileCardWidget extends StatelessWidget {
-  const ProfileCardWidget({super.key});
+  final ProfileCubit profileCubit;
+
+  const ProfileCardWidget({super.key, required this.profileCubit});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,9 @@ class ProfileCardWidget extends StatelessWidget {
                   onTap: () {
                     NavigationHelper.navigateTo(
                       context,
-                      const EditProfileScreen(),
+                      EditProfileScreen(
+                        profileCubit: profileCubit,
+                      ),
                     );
                   },
                   child: Container(
