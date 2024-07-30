@@ -2,11 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mts/core/services/local_storage/local_storage.dart';
-import 'package:mts/core/utils/initial_values.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'core/services/get_it/single_tone.dart';
+import 'core/services/local_storage/local_storage.dart';
+import 'core/utils/initial_values.dart';
 import 'features/splash_screen.dart';
 
 Future<void> main() async {
