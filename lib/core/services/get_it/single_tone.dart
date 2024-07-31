@@ -4,6 +4,7 @@ import '../../../features/auth/controller/cubit/auth_cubit.dart';
 import '../../../features/orders/controller/cubit/order_cubit.dart';
 import '../../../features/profile/controller/cubit/profile_cubit.dart';
 import '../../../model/repo_pattern/auth_repo.dart';
+import '../../../model/repo_pattern/notification_repo.dart';
 import '../../../model/repo_pattern/order_repo.dart';
 import '../../../model/repo_pattern/profile_repo.dart';
 import '../dio/dio_services.dart';
@@ -20,6 +21,7 @@ class ServicesLocator {
     sl.registerFactory<AuthRepository>(() => AuthImple());
     sl.registerFactory<ProfileRepository>(() => ProfileImple());
     sl.registerFactory<OrderRepository>(() => OrderImple());
+    sl.registerFactory<NoirifcationRepository>(() => NoirifcationImple());
 
     // cubits
     sl.registerFactory<AuthCubit>(() => AuthCubit(authRepository: sl()));

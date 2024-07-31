@@ -8,4 +8,6 @@ class Api {
   static const updateUserImage = "/delivery-men/update-personal-image";
 
   static const updateUserStatus = "/delivery-men/change-delivery-man-online-status";
+
+  static getNotification(int pageNumber)=> "/notification/all-notifications?page=$pageNumber";
 }
