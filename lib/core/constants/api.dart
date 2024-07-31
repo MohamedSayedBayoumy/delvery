@@ -9,5 +9,7 @@ class Api {
 
   static const updateUserStatus = "/delivery-men/change-delivery-man-online-status";
 
+  static const getUserData = "/delivery-men/single-delivery-man-by-token";
+
   static getNotification(int pageNumber)=> "/notification/all-notifications?page=$pageNumber";
 }

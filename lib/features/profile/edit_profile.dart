@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mts/features/profile/controller/cubit/profile_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../core/functions/loading_ui.dart';
 import '../../core/widgets/custom_button.dart';
 import '../../core/widgets/custom_padding.dart';
 import '../../core/widgets/custom_text_filed.dart';
@@ -19,9 +20,17 @@ class EditProfileScreen extends StatelessWidget {
         title: const Text("Edit Profile"),
       ),
       body: BlocConsumer<ProfileCubit, ProfileState>(
-        bloc: profileCubit,
+        bloc: profileCubit..getUserData(context),
         listener: (context, state) {
-          // TODO: implement listener
+          if (state is ProfileLoading) {
+            loadingAlert(context);
+          } else if (state is FailureProfileCase) {
+            final snackBar = SnackBar(
+              backgroundColor: Colors.red,
+              content: Text(state.message),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          } else {}
         },
         builder: (context, state) {
           return Column(
@@ -52,18 +61,9 @@ class EditProfileScreen extends StatelessWidget {
                         const Text("First Name"),
                         const SizedBox(height: 10.0),
                         CustomTextField(
-                          labelText: "Enter Your First Name",
-                          hinText: "Enter Your First Name",
-                          controller:
-                              TextEditingController(text: "Mohamed Sayed"),
-                        ),
-                        const SizedBox(height: 25.0),
-                        const Text("Last Name"),
-                        const SizedBox(height: 10.0),
-                        CustomTextField(
-                          labelText: "Enter Your Last Name",
-                          hinText: "Enter Your Last Name",
-                          controller: TextEditingController(text: "Bayoumy"),
+                          labelText: "Enter Your Name",
+                          hinText: "Enter Your Name",
+                          controller: profileCubit.nameController,
                         ),
                         const SizedBox(height: 25.0),
                         const Text("Email"),
@@ -71,18 +71,19 @@ class EditProfileScreen extends StatelessWidget {
                         CustomTextField(
                           labelText: "Enter Your Email",
                           hinText: "Enter Your Email",
-                          controller: TextEditingController(
-                              text: "Mandobobo1@gmail.com"),
+                          controller: profileCubit.emailController,
                         ),
                         const SizedBox(height: 25.0),
                         const Text("Contact Number"),
                         const SizedBox(height: 10.0),
                         Row(
                           children: [
-                            const CountryCodePicker(
-                              onChanged: print,
-                              initialSelection: 'EG',
-                              favorite: ['EG'],
+                            CountryCodePicker(
+                              onChanged: (code) {
+                                profileCubit.countryCode = code.dialCode!;
+                              },
+                              initialSelection: profileCubit.countryCode,
+                              favorite: const ['EG'],
                               showCountryOnly: false,
                               showOnlyCountryWhenClosed: false,
                               alignLeft: false,
@@ -91,8 +92,7 @@ class EditProfileScreen extends StatelessWidget {
                               child: CustomTextField(
                                 labelText: "000 000 000",
                                 hinText: "000 000 000",
-                                controller:
-                                    TextEditingController(text: "1114205280"),
+                                controller: profileCubit.phoneController,
                               ),
                             ),
                           ],

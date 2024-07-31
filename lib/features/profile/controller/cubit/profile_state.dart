@@ -6,10 +6,13 @@ final class ProfileInitial extends ProfileState {}
 
 final class ProfileLoading extends ProfileState {}
 
+final class SuccessGetUserData extends ProfileState {}
+
 final class SuccessLogout extends ProfileState {
   final String message;
 
-  SuccessLogout({required this.message});}
+  SuccessLogout({required this.message});
+}
 
 final class FailureProfileCase extends ProfileState {
   final String message;

@@ -25,7 +25,8 @@ class ServicesLocator {
 
     // cubits
     sl.registerFactory<AuthCubit>(() => AuthCubit(authRepository: sl()));
-    sl.registerFactory<ProfileCubit>(() => ProfileCubit(authRepository: sl()));
+    sl.registerFactory<ProfileCubit>(
+        () => ProfileCubit(authRepository: sl(), profileRepository: sl()));
     sl.registerFactory<OrderCubit>(() => OrderCubit(orderRepository: sl()));
   }
 }

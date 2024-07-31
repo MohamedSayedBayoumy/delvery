@@ -53,6 +53,9 @@ class DioServices {
 
     final request = await dio.get(
       "${Api.baseUrl}$url",
+      options: Options(
+        headers: headers,
+      ),
     );
     return request;
   }
