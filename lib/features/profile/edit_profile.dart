@@ -1,13 +1,12 @@
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mts/features/profile/controller/cubit/profile_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../core/functions/loading_ui.dart';
 import '../../core/widgets/custom_button.dart';
 import '../../core/widgets/custom_padding.dart';
 import '../../core/widgets/custom_text_filed.dart';
+import 'controller/cubit/profile_cubit.dart';
 
 class EditProfileScreen extends StatelessWidget {
   final ProfileCubit profileCubit;
@@ -76,27 +75,31 @@ class EditProfileScreen extends StatelessWidget {
                         const SizedBox(height: 25.0),
                         const Text("Contact Number"),
                         const SizedBox(height: 10.0),
-                        Row(
-                          children: [
-                            CountryCodePicker(
-                              onChanged: (code) {
-                                profileCubit.countryCode = code.dialCode!;
-                              },
-                              initialSelection: profileCubit.countryCode,
-                              favorite: const ['EG'],
-                              showCountryOnly: false,
-                              showOnlyCountryWhenClosed: false,
-                              alignLeft: false,
-                            ),
-                            Expanded(
-                              child: CustomTextField(
-                                labelText: "000 000 000",
-                                hinText: "000 000 000",
-                                controller: profileCubit.phoneController,
-                              ),
-                            ),
-                          ],
+                        CustomTextField(
+                          enabled: false,
+                          controller:  profileCubit.phoneController,
                         ),
+                        // Row(
+                        //   children: [
+                        //     CountryCodePicker(
+                        //       onChanged: (code) {
+                        //         profileCubit.countryCode = code.dialCode!;
+                        //       },
+                        //       initialSelection: profileCubit.countryCode,
+                        //       favorite: const ['EG'],
+                        //       showCountryOnly: false,
+                        //       showOnlyCountryWhenClosed: false,
+                        //       alignLeft: false,
+                        //     ),
+                        //     Expanded(
+                        //       child: CustomTextField(
+                        //         labelText: "000 000 000",
+                        //         hinText: "000 000 000",
+                        //         controller: profileCubit.phoneController,
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     ),
                   ),

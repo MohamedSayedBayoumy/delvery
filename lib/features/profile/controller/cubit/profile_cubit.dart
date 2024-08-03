@@ -62,7 +62,6 @@ class ProfileCubit extends Cubit<ProfileState> {
           licenseImage = userDataModel!.data!.licenseImage!;
         }
 
-        // countryCode = userDataModel!.data!.phoneNumber!.split("`")[0];
         emit(SuccessGetUserData());
       },
     );
