@@ -11,6 +11,7 @@ import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_padding.dart';
 import '../../../core/widgets/custom_text_filed.dart';
 import '../controller/cubit/auth_cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -19,7 +20,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Create New Account"),
+        title: Text(AppLocalizations.of(context)!.create_account),
       ),
       body: CustomPadding(
         child: SingleChildScrollView(
@@ -52,23 +53,23 @@ class RegisterScreen extends StatelessWidget {
                             Image.asset("assets/LOGO SAFRI.jpg", width: 30.w),
                           ],
                         ),
-                        const Text("First Name"),
+                        Text(AppLocalizations.of(context)!.first_name),
                         const SizedBox(height: 10.0),
                         CustomTextField(
-                          labelText: "Enter Your Full Name",
-                          hinText: "Enter Your Full Name",
+                          labelText: AppLocalizations.of(context)!.first_name,
+                          hinText: AppLocalizations.of(context)!.first_name,
                           controller: cubit.fullNameController,
                         ),
                         const SizedBox(height: 15.0),
-                        const Text("Email"),
+                        Text(AppLocalizations.of(context)!.email),
                         const SizedBox(height: 10.0),
                         CustomTextField(
-                          labelText: "Enter Your Email",
-                          hinText: "Enter Your Email",
+                          labelText: AppLocalizations.of(context)!.enter_email,
+                          hinText: AppLocalizations.of(context)!.enter_email,
                           controller: cubit.emailController,
                         ),
                         const SizedBox(height: 15.0),
-                        const Text("Contact Number"),
+                        Text(AppLocalizations.of(context)!.contact_number),
                         const SizedBox(height: 10.0),
                         Row(
                           children: [
@@ -93,11 +94,12 @@ class RegisterScreen extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 15.0),
-                        const Text("Password"),
+                        Text(AppLocalizations.of(context)!.password),
                         const SizedBox(height: 10.0),
                         CustomTextField(
-                          labelText: "Enter Your Password",
-                          hinText: "Enter Your Password",
+                          labelText:
+                              AppLocalizations.of(context)!.enter_password,
+                          hinText: AppLocalizations.of(context)!.enter_password,
                           controller: cubit.passwordController,
                           obscureText: cubit.showPassword,
                           maxLines: 1,
@@ -111,11 +113,13 @@ class RegisterScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 15.0),
-                        const Text("Confirm Password"),
+                        Text(AppLocalizations.of(context)!.confirm_password),
                         const SizedBox(height: 10.0),
                         CustomTextField(
-                          labelText: "Enter Your Confirm Password",
-                          hinText: "Enter Your Confirm Password",
+                          labelText: AppLocalizations.of(context)!
+                              .enter_confirm_password,
+                          hinText: AppLocalizations.of(context)!
+                              .enter_confirm_password,
                           controller: cubit.confirmController,
                           obscureText: cubit.showPassword,
                           maxLines: 1,
@@ -130,7 +134,8 @@ class RegisterScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 40.0),
                         CustomButton(
-                          buttonText: "Create New Account",
+                          buttonText:
+                              AppLocalizations.of(context)!.create_account,
                           onPressed: () {
                             cubit.register(context);
                           },
@@ -145,8 +150,9 @@ class RegisterScreen extends StatelessWidget {
                                   cubit.resetValues();
                                   Navigator.pop(context);
                                 },
-                                child: const Text(
-                                  "Already Have an Account ? Login",
+                                child: Text(
+                                  AppLocalizations.of(context)!
+                                      .already_have_account,
                                 ),
                               ),
                             ],

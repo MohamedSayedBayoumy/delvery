@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 openBottomSheet(
   context, {
@@ -33,10 +34,10 @@ openBottomSheet(
                         await picker.pickImage(source: ImageSource.camera);
                     onChangedCamera!(photo!.path);
                   },
-                  child: const Row(
+                  child: Row(
                     children: [
-                      Icon(Icons.camera_alt_rounded),
-                      Text("Camera"),
+                      const Icon(Icons.camera_alt_rounded),
+                      Text(AppLocalizations.of(context)!.camera),
                     ],
                   ),
                 ),
@@ -49,10 +50,10 @@ openBottomSheet(
                         await picker.pickImage(source: ImageSource.gallery);
                     onChangedCamera!(image!.path);
                   },
-                  child: const Row(
+                  child: Row(
                     children: [
-                      Icon(Icons.image),
-                      Text("Image"),
+                      const Icon(Icons.image),
+                      Text(AppLocalizations.of(context)!.image),
                     ],
                   ),
                 ),

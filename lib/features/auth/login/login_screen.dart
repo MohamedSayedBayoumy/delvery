@@ -11,6 +11,7 @@ import '../../../core/widgets/custom_text_filed.dart';
 import '../controller/cubit/auth_cubit.dart';
 import '../register/register_screen.dart';
 import '../register/upload_document.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -52,22 +53,22 @@ class LoginScreen extends StatelessWidget {
                           Image.asset("assets/LOGO SAFRI.jpg", width: 30.w),
                         ],
                       ),
-                      const Text("Email"),
+                      Text(AppLocalizations.of(context)!.email),
                       const SizedBox(height: 10.0),
                       CustomTextField(
-                        labelText: "Enter Your Email ID",
-                        hinText: "Enter Your Email ID",
+                        labelText: AppLocalizations.of(context)!.enter_email,
+                        hinText: AppLocalizations.of(context)!.email,
                         controller: cubit.emailController,
                         onChange: (v) {
                           return v;
                         },
                       ),
                       const SizedBox(height: 25.0),
-                      const Text("Password"),
+                      Text(AppLocalizations.of(context)!.password),
                       const SizedBox(height: 10.0),
                       CustomTextField(
-                        labelText: "Enter Your Password",
-                        hinText: "Enter Your Password",
+                        labelText: AppLocalizations.of(context)!.enter_password,
+                        hinText: AppLocalizations.of(context)!.enter_password,
                         maxLines: 1,
                         controller: cubit.passwordController,
                         onChange: (v) {
@@ -89,9 +90,9 @@ class LoginScreen extends StatelessWidget {
                           const Spacer(),
                           TextButton(
                             onPressed: () {},
-                            child: const Text(
-                              "Forgot Password ?",
-                              style: TextStyle(color: Colors.black),
+                            child: Text(
+                              AppLocalizations.of(context)!.forgot_password,
+                              style: const TextStyle(color: Colors.black),
                             ),
                           ),
                         ],
@@ -101,7 +102,7 @@ class LoginScreen extends StatelessWidget {
                         onPressed: () {
                           cubit.login(context);
                         },
-                        buttonText: "Login",
+                        buttonText: AppLocalizations.of(context)!.login,
                       ),
                       const SizedBox(height: 12.0),
                       Row(
@@ -116,7 +117,7 @@ class LoginScreen extends StatelessWidget {
                               );
                             },
                             child:
-                                const Text("Don't have an account ? Register"),
+                                Text(AppLocalizations.of(context)!.no_account),
                           ),
                         ],
                       ),
