@@ -47,9 +47,10 @@ class ProfileCubit extends Cubit<ProfileState> {
     );
   }
 
-  logout() async {
+  logout(context) async {
     emit(ProfileLoading());
     final reuslt = await authRepository.logout();
+    Navigator.pop(context);
 
     reuslt.fold(
       (l) {

@@ -114,7 +114,7 @@ class ProfileScreen extends StatelessWidget {
                       title: "Sing Out",
                       icon: Icons.login_sharp,
                       onTap: () {
-                        cubit.logout();
+                        cubit.logout(context);
                       },
                     ),
                   ],
