@@ -20,7 +20,7 @@ class EditProfileScreen extends StatelessWidget {
         title: const Text("Edit Profile"),
       ),
       body: BlocConsumer<ProfileCubit, ProfileState>(
-        bloc: profileCubit..getUserData(context),
+        bloc: profileCubit..getUserData(context, getDocument: false),
         listener: (context, state) {
           if (state is ProfileLoading) {
             loadingAlert(context);

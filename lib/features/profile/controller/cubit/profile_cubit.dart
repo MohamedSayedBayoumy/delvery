@@ -23,9 +23,17 @@ class ProfileCubit extends Cubit<ProfileState> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+
+  TextEditingController vichleTypeController = TextEditingController();
+  TextEditingController vichleNumberController = TextEditingController();
+  TextEditingController licenceNumberController = TextEditingController();
+
+  String idImage = '';
+  String licenseImage = '';
+
   String countryCode = "";
 
-  getUserData(context) async {
+  getUserData(context, {bool getDocument = false}) async {
     emit(ProfileLoading());
     final reuslt = await profileRepository.getUserDate();
 
@@ -39,9 +47,22 @@ class ProfileCubit extends Cubit<ProfileState> {
         userDataModel = r;
         nameController.text = userDataModel!.data!.name!;
         emailController.text = userDataModel!.data!.email!;
-        phoneController.text = userDataModel!.data!.phoneNumber!.split("`")[1];
+        phoneController.text = userDataModel!.data!.phoneNumber!;
+        if (getDocument == true) {
+          if (userDataModel!.data!.carType == "1") {
+            vichleTypeController.text = "Car";
+          } else if (userDataModel!.data!.carType == "1") {
+            vichleTypeController.text = "bike";
+          } else {
+            vichleTypeController.text = "bicycle";
+          }
+          vichleNumberController.text = userDataModel!.data!.carNumber!;
+          licenceNumberController.text = userDataModel!.data!.licenseNumber!;
+          idImage = userDataModel!.data!.idImage!;
+          licenseImage = userDataModel!.data!.licenseImage!;
+        }
 
-        countryCode = userDataModel!.data!.phoneNumber!.split("`")[0];
+        // countryCode = userDataModel!.data!.phoneNumber!.split("`")[0];
         emit(SuccessGetUserData());
       },
     );

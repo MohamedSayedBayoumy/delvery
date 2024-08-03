@@ -56,10 +56,10 @@ class ProfileScreen extends StatelessWidget {
                   children: [
                     ProfileCardWidget(profileCubit: cubit),
                     const SizedBox(height: 10.0),
-                    const ListTileWidget(
+                    ListTileWidget(
                       title: "My Documents",
                       icon: Icons.edit_document,
-                      to: MyDocumentScreen(),
+                      to: MyDocumentScreen(profileCubit: cubit),
                     ),
                     const Divider(
                       height: 0.1,
