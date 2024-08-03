@@ -7,26 +7,29 @@ Future<void> loadingAlert(BuildContext context) async {
     context: context,
     barrierDismissible: false,
     builder: (BuildContext context) {
-      return BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-        child: AlertDialog(
-          alignment: AlignmentDirectional.center,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-          content: const Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Center(
-                child: CircularProgressIndicator(
-                  color: Colors.green,
-                  strokeWidth: 1.0,
-                  strokeCap: StrokeCap.round,
+      return PopScope(
+        canPop: true,
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: AlertDialog(
+            alignment: AlignmentDirectional.center,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0)),
+            content: const Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.green,
+                    strokeWidth: 1.0,
+                    strokeCap: StrokeCap.round,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
+            actionsAlignment: MainAxisAlignment.end,
+            actionsPadding: EdgeInsets.zero,
           ),
-          actionsAlignment: MainAxisAlignment.end,
-          actionsPadding: EdgeInsets.zero,
         ),
       );
     },
