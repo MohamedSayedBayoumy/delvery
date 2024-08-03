@@ -51,6 +51,7 @@
     "my_document": "My Document",
     "earning_history": "Earning History",
     "faqs": "FAQs",
-    "sign_out": "Sign Out"
-  }
-  
+    "sign_out": "Sign Out",
+    "orders": "Orders",
+    "profile":"Profile"
+}
