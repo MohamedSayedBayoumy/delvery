@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'core/services/get_it/single_tone.dart';
 import 'core/utils/initial_values.dart';
 import 'features/splash_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +29,16 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, screenType) => MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
+        localizationsDelegates: const [
+          AppLocalizations.delegate, // Add this line
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en'), // English
+          Locale('ar'), // Spanish
+        ],
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
           useMaterial3: false,

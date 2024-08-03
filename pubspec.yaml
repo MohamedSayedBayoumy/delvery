@@ -52,6 +52,9 @@ dependencies:
   device_preview:
   country_code_picker: ^3.0.0
   image_picker: ^1.1.2
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +72,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true # Add this line
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
