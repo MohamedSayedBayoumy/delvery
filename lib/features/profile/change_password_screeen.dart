@@ -4,6 +4,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../core/widgets/custom_button.dart';
 import '../../core/widgets/custom_padding.dart';
 import '../../core/widgets/custom_text_filed.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChangePasswordScreeen extends StatelessWidget {
   const ChangePasswordScreeen({super.key});
@@ -12,7 +13,7 @@ class ChangePasswordScreeen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Change Password"),
+        title: Text(AppLocalizations.of(context)!.change_password),
         centerTitle: true,
       ),
       body: CustomPadding(
@@ -23,27 +24,27 @@ class ChangePasswordScreeen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Old Password"),
+                    Text(AppLocalizations.of(context)!.old_password),
                     const SizedBox(height: 10.0),
                     CustomTextField(
-                      labelText: "Enter Your Password",
-                      hinText: "Enter Your Password",
+                      labelText: AppLocalizations.of(context)!.enter_password,
+                      hinText: AppLocalizations.of(context)!.enter_password,
                       controller: TextEditingController(),
                     ),
                     const SizedBox(height: 25.0),
-                    const Text("New Password"),
+                    Text(AppLocalizations.of(context)!.new_password),
                     const SizedBox(height: 10.0),
                     CustomTextField(
-                      labelText: "Enter Your Password",
-                      hinText: "Enter Your Password",
+                      labelText: AppLocalizations.of(context)!.enter_password,
+                      hinText: AppLocalizations.of(context)!.enter_password,
                       controller: TextEditingController(),
                     ),
                     const SizedBox(height: 25.0),
-                    const Text("Confirm Password"),
+                    Text(AppLocalizations.of(context)!.confirm_password),
                     const SizedBox(height: 10.0),
                     CustomTextField(
-                      labelText: "Change Password",
-                      hinText: "Change Password",
+                      labelText: AppLocalizations.of(context)!.change_password,
+                      hinText: AppLocalizations.of(context)!.change_password,
                       controller: TextEditingController(),
                     ),
                     const SizedBox(height: 25.0),
@@ -53,11 +54,11 @@ class ChangePasswordScreeen extends StatelessWidget {
             ),
             InkWell(
               onTap: () {},
-              child: const Row(
+              child: Row(
                 children: [
-                  Text("I don't remember my old password ! Please Help"),
-                  Spacer(),
-                  Icon(Icons.arrow_forward_rounded)
+                  Text(AppLocalizations.of(context)!.forgot_old_password),
+                  const Spacer(),
+                  const Icon(Icons.arrow_forward_rounded)
                 ],
               ),
             ),
@@ -65,7 +66,8 @@ class ChangePasswordScreeen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: CustomButton(
                 height: 7.h,
-                buttonText: "Change Password",
+                buttonText:
+                    AppLocalizations.of(context)!.change_password_button,
               ),
             )
           ],

@@ -13,6 +13,7 @@ import 'my_cash.dart';
 import 'my_document.dart';
 import 'widget/list_tile_widget.dart';
 import 'widget/profile_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -21,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My Profile"),
+        title:   Text(AppLocalizations.of(context)!.edit_profile),
       ),
       body: SingleChildScrollView(
         child: CustomPadding(
@@ -57,53 +58,53 @@ class ProfileScreen extends StatelessWidget {
                     ProfileCardWidget(profileCubit: cubit),
                     const SizedBox(height: 10.0),
                     ListTileWidget(
-                      title: "My Documents",
+                      title: AppLocalizations.of(context)!.my_document,
                       icon: Icons.edit_document,
                       to: MyDocumentScreen(profileCubit: cubit),
                     ),
                     const Divider(
                       height: 0.1,
                     ),
-                    const ListTileWidget(
-                      title: "History",
+                     ListTileWidget(
+                      title: AppLocalizations.of(context)!.history,
                       icon: Icons.history,
                       to: HistoryScreen(),
                     ),
                     const Divider(
                       height: 0.1,
                     ),
-                    const ListTileWidget(
-                      title: "My Cash Balance",
+                     ListTileWidget(
+                      title: AppLocalizations.of(context)!.my_cash_balance,
                       icon: Icons.wallet_rounded,
                       to: MyCashBalanceScreen(),
                     ),
                     const Divider(
                       height: 0.1,
                     ),
-                    const ListTileWidget(
-                      title: "Earning History",
+                     ListTileWidget(
+                      title: AppLocalizations.of(context)!.earning_history,
                       icon: Icons.grading_sharp,
                     ),
                     const Divider(
                       height: 0.1,
                     ),
-                    const ListTileWidget(
-                      title: "Change Password",
+                      ListTileWidget(
+                      title: AppLocalizations.of(context)!.change_password,
                       icon: Icons.password,
                       to: ChangePasswordScreeen(),
                     ),
                     const Divider(
                       height: 0.1,
                     ),
-                    const ListTileWidget(
-                      title: "FAQs",
+                      ListTileWidget(
+                      title: AppLocalizations.of(context)!.faqs,
                       icon: Icons.question_mark_rounded,
                     ),
                     const Divider(
                       height: 0.1,
                     ),
-                    const ListTileWidget(
-                      title: "Language",
+                      ListTileWidget(
+                      title: AppLocalizations.of(context)!.language,
                       icon: Icons.language_rounded,
                       to: LanguageScreen(),
                     ),
@@ -111,7 +112,7 @@ class ProfileScreen extends StatelessWidget {
                       height: 0.1,
                     ),
                     ListTileWidget(
-                      title: "Sing Out",
+                      title: AppLocalizations.of(context)!.sign_out,
                       icon: Icons.login_sharp,
                       onTap: () {
                         cubit.logout(context);

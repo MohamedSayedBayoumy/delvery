@@ -5,6 +5,7 @@ import '../../../core/constants/colors.dart';
 import '../../../core/utils/navigation.dart';
 import '../controller/cubit/profile_cubit.dart';
 import '../edit_profile.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileCardWidget extends StatelessWidget {
   final ProfileCubit profileCubit;
@@ -52,17 +53,17 @@ class ProfileCardWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15.0),
                       color: Colors.black,
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.edit,
                           color: ConstantsColor.greenColor,
                         ),
-                        SizedBox(width: 10.0),
+                        const SizedBox(width: 10.0),
                         Text(
-                          "Edit Profile",
-                          style: TextStyle(
+                          AppLocalizations.of(context)!.edit_profile,
+                          style: const TextStyle(
                             color: ConstantsColor.greenColor,
                           ),
                         ),

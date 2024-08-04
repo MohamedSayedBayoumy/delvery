@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mts/core/widgets/custom_padding.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class LanguageScreen extends StatelessWidget {
   const LanguageScreen({super.key});
@@ -20,7 +22,7 @@ class LanguageScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Language"),
+        title:   Text(AppLocalizations.of(context)!.language),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

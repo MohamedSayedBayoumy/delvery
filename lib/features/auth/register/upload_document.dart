@@ -13,6 +13,7 @@ import '../../../core/widgets/custom_text_filed.dart';
 import '../controller/cubit/auth_cubit.dart';
 import 'set_location.dart';
 import 'widget/container_upload_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UploadDocumentScreen extends StatelessWidget {
   const UploadDocumentScreen({super.key});
@@ -21,7 +22,7 @@ class UploadDocumentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Upload Document"),
+        title: Text(AppLocalizations.of(context)!.select_location),
         actions: [
           IconButton(
             onPressed: () {},
@@ -65,7 +66,7 @@ class UploadDocumentScreen extends StatelessWidget {
                             Image.asset("assets/LOGO SAFRI.jpg", width: 30.w),
                           ],
                         ),
-                        const Text("Vehicle Type"),
+                        Text(AppLocalizations.of(context)!.vehicle_type),
                         const SizedBox(height: 14.0),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -90,27 +91,32 @@ class UploadDocumentScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 15.0),
-                        const Text("Vehicle Number"),
+                        Text(AppLocalizations.of(context)!.vehicle_number),
                         const SizedBox(height: 14.0),
                         CustomTextField(
-                          labelText: "Enter Vehicle Number",
-                          hinText: "Enter Vehicle Number",
+                          labelText: AppLocalizations.of(context)!
+                              .enter_vehicle_number,
+                          hinText: AppLocalizations.of(context)!
+                              .enter_vehicle_number,
                           controller: cubit.vehicleNumberController,
                         ),
                         const SizedBox(height: 15.0),
-                        const Text("Licence Number"),
+                        Text(AppLocalizations.of(context)!.license_number),
                         const SizedBox(height: 14.0),
                         CustomTextField(
-                          labelText: "Enter Licence Number",
-                          hinText: "Enter Licence Number",
+                          labelText: AppLocalizations.of(context)!
+                              .enter_license_number,
+                          hinText: AppLocalizations.of(context)!
+                              .enter_license_number,
                           controller: cubit.licenceNumberController,
                         ),
                         const SizedBox(height: 15.0),
-                        const Text("Upload Your Driving License"),
+                        Text(AppLocalizations.of(context)!
+                            .upload_driving_license),
                         const SizedBox(height: 14.0),
                         ContainerUploadWidget(
                           title: cubit.drivingLicenseImage == ''
-                              ? "License Image"
+                              ? AppLocalizations.of(context)!.license_image
                               : cubit.drivingLicenseImage.split("/").last,
                           onTap: () {
                             openBottomSheet(
@@ -125,11 +131,12 @@ class UploadDocumentScreen extends StatelessWidget {
                           },
                         ),
                         const SizedBox(height: 15.0),
-                        const Text("Upload Your One of National ID"),
+                          Text(
+                            AppLocalizations.of(context)!.upload_national_id),
                         const SizedBox(height: 14.0),
                         ContainerUploadWidget(
                           title: cubit.nationalIDImage == ''
-                              ? "National ID"
+                              ? AppLocalizations.of(context)!.national_id
                               : cubit.nationalIDImage.split("/").last,
                           onTap: () {
                             openBottomSheet(
@@ -159,7 +166,7 @@ class UploadDocumentScreen extends StatelessWidget {
                   const SizedBox(height: 10.0),
                   CustomButton(
                     height: 7.h,
-                    buttonText: "Done , Let's go!",
+                    buttonText: AppLocalizations.of(context)!.done,
                     onPressed: () {
                       cubit.uploadDocument(context);
                     },

@@ -4,6 +4,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../core/constants/colors.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_padding.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SelectLocationScreen extends StatelessWidget {
   const SelectLocationScreen({super.key});
@@ -14,14 +15,14 @@ class SelectLocationScreen extends StatelessWidget {
     String area = ares[0];
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Select Location"),
+        title: Text(AppLocalizations.of(context)!.select_location),
         centerTitle: true,
       ),
       body: CustomPadding(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Select Delivery Zone"),
+              Text(AppLocalizations.of(context)!.select_delivery_zone),
             const SizedBox(height: 10.0),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -46,7 +47,7 @@ class SelectLocationScreen extends StatelessWidget {
             const Spacer(),
             CustomButton(
               height: 7.h,
-              buttonText: "Set This Location",
+              buttonText: AppLocalizations.of(context)!.select_location,
             ),
             const SizedBox(height: 10.0)
           ],

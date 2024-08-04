@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mts/core/widgets/custom_padding.dart';
 import 'package:mts/core/widgets/custom_text_filed.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
@@ -37,20 +39,20 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   }
                   setState(() {});
                 },
-                tabs: const [
+                tabs:  [
                   Tab(
-                    text: "Completed",
+                    text: AppLocalizations.of(context)!.completed,
                   ),
                   Tab(
-                    text: "Cancel Delivery",
+                    text: AppLocalizations.of(context)!.cancel_delivery,
                   ),
                 ],
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15.0),
                 child: CustomTextField(
-                  hinText: "Search Order ID",
-                  labelText: "Search Order ID",
+                  hinText: AppLocalizations.of(context)!.search_order_id,
+                  labelText: AppLocalizations.of(context)!.search_order_id,
                   controller: TextEditingController(),
                   suffixWidget: const Icon(Icons.search, color: Colors.white),
                 ),

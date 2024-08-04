@@ -4,6 +4,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../core/constants/colors.dart';
 import '../../core/widgets/custom_padding.dart';
 import '../../core/widgets/custom_text_filed.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyCashBalanceScreen extends StatelessWidget {
   const MyCashBalanceScreen({super.key});
@@ -12,7 +13,7 @@ class MyCashBalanceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My Cash Balance"),
+        title: Text(AppLocalizations.of(context)!.my_cash_balance),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -29,9 +30,9 @@ class MyCashBalanceScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Total Balance",
-                      style: TextStyle(color: Colors.black54),
+                    Text(
+                      AppLocalizations.of(context)!.total_balance,
+                      style: const TextStyle(color: Colors.black54),
                     ),
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 8.0),
@@ -41,8 +42,8 @@ class MyCashBalanceScreen extends StatelessWidget {
                       ),
                     ),
                     CustomTextField(
-                      hinText: "Search Order ID",
-                      labelText: "Search Order ID",
+                      hinText: AppLocalizations.of(context)!.search_order_id,
+                      labelText: AppLocalizations.of(context)!.search_order_id,
                       controller: TextEditingController(),
                       suffixWidget:
                           const Icon(Icons.search, color: Colors.white),

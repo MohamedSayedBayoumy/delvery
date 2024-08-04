@@ -6,6 +6,7 @@ import '../../core/widgets/custom_padding.dart';
 import '../../core/widgets/custom_text_filed.dart';
 import 'controller/cubit/profile_cubit.dart';
 import 'widget/doc_container.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyDocumentScreen extends StatelessWidget {
   final ProfileCubit profileCubit;
@@ -16,7 +17,7 @@ class MyDocumentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My Document"),
+        title: Text(AppLocalizations.of(context)!.my_document),
         centerTitle: true,
       ),
       body: BlocConsumer<ProfileCubit, ProfileState>(
@@ -38,21 +39,21 @@ class MyDocumentScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Vehicle Type"),
+                    Text(AppLocalizations.of(context)!.vehicle_type),
                   const SizedBox(height: 10.0),
                   CustomTextField(
                     controller: profileCubit.vichleTypeController,
                     enabled: false,
                   ),
                   const SizedBox(height: 25.0),
-                  const Text("Vehicle Number"),
+                    Text(AppLocalizations.of(context)!.vehicle_number),
                   const SizedBox(height: 10.0),
                   CustomTextField(
                     enabled: false,
                     controller: profileCubit.vichleNumberController,
                   ),
                   const SizedBox(height: 25.0),
-                  const Text("Licence Number"),
+                    Text(AppLocalizations.of(context)!.license_number),
                   const SizedBox(height: 10.0),
                   CustomTextField(
                     enabled: false,
