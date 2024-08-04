@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
           Locale('en'), // English
           Locale('ar'), // Spanish
         ],
+        locale: const Locale("ar"),
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
           useMaterial3: false,

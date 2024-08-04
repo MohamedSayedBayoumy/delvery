@@ -36,15 +36,6 @@ class ProfileImple implements ProfileRepository {
       );
 
       return Right(GlobalResponseModel.fromJson(response.data));
-    } catch (e) {
-      return Left(
-        FailureCase(
-          message: "Something is wrong , please check your internet connection",
-          status: false,
-          failuresCases: [],
-        ),
-      );
-      // ignore: dead_code_catch_following_catch
     } on DioException catch (e) {
       log("${e.response!.data}");
 
@@ -69,15 +60,6 @@ class ProfileImple implements ProfileRepository {
       );
 
       return Right(UserDataModel.fromJson(response.data));
-    } catch (e) {
-      return Left(
-        FailureCase(
-          message: "Something is wrong , please check your internet connection",
-          status: false,
-          failuresCases: [],
-        ),
-      );
-      // ignore: dead_code_catch_following_catch
     } on DioException catch (e) {
       log("${e.response!.data}");
 
