@@ -55,7 +55,7 @@ class _BottomNavigationBarScreensState
           BottomNavigationBarItem(
             icon: iconWidget(Icons.food_bank_rounded),
             // activeIcon: iconWidget(ConstantsImages.activeHome),
-            label: "Orders",
+            label: AppLocalizations.of(context)!.orders,
           ),
           BottomNavigationBarItem(
             icon: iconWidget(Icons.notifications_none_outlined),
@@ -63,7 +63,7 @@ class _BottomNavigationBarScreensState
           ),
           BottomNavigationBarItem(
             icon: iconWidget(Icons.person),
-            label: "profile",
+            label: AppLocalizations.of(context)!.profile,
           ),
         ],
       ),
