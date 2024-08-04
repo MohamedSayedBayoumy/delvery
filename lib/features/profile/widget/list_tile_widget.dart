@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mts/core/utils/navigation.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../../../core/utils/navigation.dart';
 
 class ListTileWidget extends StatelessWidget {
   const ListTileWidget({

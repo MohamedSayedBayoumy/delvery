@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mts/features/profile/profile_screen.dart';
 
 import '../../core/constants/colors.dart';
 import '../notification/notification_screen.dart';
 import '../orders/orders_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../profile/profile_screen.dart';
 
 class BottomNavigationBarScreens extends StatefulWidget {
   const BottomNavigationBarScreens({super.key});
