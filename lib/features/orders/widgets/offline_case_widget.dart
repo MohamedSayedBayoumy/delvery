@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OfflineCaseWidget extends StatelessWidget {
   const OfflineCaseWidget({
@@ -12,9 +13,9 @@ class OfflineCaseWidget extends StatelessWidget {
       children: [
         Icon(Icons.no_meals_rounded, size: 50.w),
         const SizedBox(height: 10.0),
-        const Text(
-          "Now You are Offline , let's Start",
-          style: TextStyle(color: Colors.red),
+        Text(
+          AppLocalizations.of(context)!.offline_status,
+          style: const TextStyle(color: Colors.red),
         ),
       ],
     );

@@ -14,7 +14,7 @@ class EmptyCaseWidget extends StatelessWidget {
         Icon(Icons.no_meals_rounded, size: 50.w),
         Text(AppLocalizations.of(context)!.notification),
         const SizedBox(height: 10.0),
-        const Text("You haven't any new job available right now."),
+        Text("You haven't any new job available right now."),
       ],
     );
   }
