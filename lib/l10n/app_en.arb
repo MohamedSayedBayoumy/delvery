@@ -53,5 +53,7 @@
     "faqs": "FAQs",
     "sign_out": "Sign Out",
     "orders": "Orders",
-    "profile":"Profile"
+    "profile": "Profile",
+    "offline_status": "Now You are Offline , let's Start",
+    "empty_case": "ليس لديك أي طلبات جديدة متاحة الآن."
 }
