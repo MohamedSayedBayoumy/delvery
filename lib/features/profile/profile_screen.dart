@@ -22,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:   Text(AppLocalizations.of(context)!.edit_profile),
+        title: Text(AppLocalizations.of(context)!.edit_profile),
       ),
       body: SingleChildScrollView(
         child: CustomPadding(
@@ -65,48 +65,48 @@ class ProfileScreen extends StatelessWidget {
                     const Divider(
                       height: 0.1,
                     ),
-                     ListTileWidget(
+                    ListTileWidget(
                       title: AppLocalizations.of(context)!.history,
                       icon: Icons.history,
-                      to: HistoryScreen(),
+                      to: const HistoryScreen(),
                     ),
                     const Divider(
                       height: 0.1,
                     ),
-                     ListTileWidget(
+                    ListTileWidget(
                       title: AppLocalizations.of(context)!.my_cash_balance,
                       icon: Icons.wallet_rounded,
-                      to: MyCashBalanceScreen(),
+                      to: const MyCashBalanceScreen(),
                     ),
                     const Divider(
                       height: 0.1,
                     ),
-                     ListTileWidget(
+                    ListTileWidget(
                       title: AppLocalizations.of(context)!.earning_history,
                       icon: Icons.grading_sharp,
                     ),
                     const Divider(
                       height: 0.1,
                     ),
-                      ListTileWidget(
+                    ListTileWidget(
                       title: AppLocalizations.of(context)!.change_password,
                       icon: Icons.password,
-                      to: ChangePasswordScreeen(),
+                      to: const ChangePasswordScreeen(),
                     ),
                     const Divider(
                       height: 0.1,
                     ),
-                      ListTileWidget(
+                    ListTileWidget(
                       title: AppLocalizations.of(context)!.faqs,
                       icon: Icons.question_mark_rounded,
                     ),
                     const Divider(
                       height: 0.1,
                     ),
-                      ListTileWidget(
+                    ListTileWidget(
                       title: AppLocalizations.of(context)!.language,
                       icon: Icons.language_rounded,
-                      to: LanguageScreen(),
+                      to: const LanguageScreen(),
                     ),
                     const Divider(
                       height: 0.1,
