@@ -55,5 +55,5 @@
     "orders": "Orders",
     "profile": "Profile",
     "offline_status": "Now You are Offline , let's Start",
-    "empty_case": "ليس لديك أي طلبات جديدة متاحة الآن."
+    "empty_case": "You haven't any new orders available right now."
 }
