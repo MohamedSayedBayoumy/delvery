@@ -47,7 +47,6 @@ class ProfileCardWidget extends StatelessWidget {
                     );
                   },
                   child: Container(
-                    width: 130.0,
                     padding: const EdgeInsets.symmetric(vertical: 5.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15.0),
