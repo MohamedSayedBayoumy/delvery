@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mts/core/widgets/custom_padding.dart';
-import 'package:mts/core/widgets/custom_text_filed.dart';
+ 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../core/widgets/custom_padding.dart';
+import '../../core/widgets/custom_text_filed.dart';
 
 
 class HistoryScreen extends StatefulWidget {
@@ -19,7 +21,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("History"),
+          title:   Text(AppLocalizations.of(context)!.history),
           centerTitle: true,
         ),
         body: CustomPadding(
