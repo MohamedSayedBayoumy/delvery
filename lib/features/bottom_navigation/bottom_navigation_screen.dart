@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../core/constants/colors.dart';
-import '../notification/notification_screen.dart';
 import '../orders/orders_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -40,7 +39,11 @@ class _BottomNavigationBarScreensState
             selectedIndex = value;
           });
         },
-        children: const [OrdersScreen(), NotificationScreen(), ProfileScreen()],
+        children: const [
+          OrdersScreen(),
+          // NotificationScreen(),
+          ProfileScreen(),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onItemTapped,
@@ -58,10 +61,10 @@ class _BottomNavigationBarScreensState
             // activeIcon: iconWidget(ConstantsImages.activeHome),
             label: AppLocalizations.of(context)!.orders,
           ),
-          BottomNavigationBarItem(
-            icon: iconWidget(Icons.notifications_none_outlined),
-            label: AppLocalizations.of(context)!.notification,
-          ),
+          // BottomNavigationBarItem(
+          //   icon: iconWidget(Icons.notifications_none_outlined),
+          //   label: AppLocalizations.of(context)!.notification,
+          // ),
           BottomNavigationBarItem(
             icon: iconWidget(Icons.person),
             label: AppLocalizations.of(context)!.profile,
