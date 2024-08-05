@@ -8,31 +8,43 @@ import '../../core/error/failure.dart';
 import '../../core/services/dio/dio_services.dart';
 import '../../core/utils/initial_values.dart';
 import '../model/global_response.dart';
+import '../model/profile_model/update_user_image.dart';
 import '../model/profile_model/user_data_model.dart';
 
 abstract class ProfileRepository {
-  Future<Either<FailureHandler, GlobalResponseModel>> updateUesrImage(
-      {String imagePath});
+  Future<Either<FailureHandler, GlobalResponseModel>> updateUesr(
+      {ProfileParam data});
 
   Future<Either<FailureHandler, UserDataModel>> getUserDate();
 }
 
 class ProfileImple implements ProfileRepository {
   @override
-  Future<Either<FailureHandler, GlobalResponseModel>> updateUesrImage(
-      {String? imagePath}) async {
+  Future<Either<FailureHandler, GlobalResponseModel>> updateUesr(
+      {ProfileParam? data}) async {
     try {
-      final response = await DioServices.post(
-        url: Api.updateUserImage,
+      final response = await DioServices.put(
+        url: Api.updateUserImage(data!.userId),
         headers: {
           'Authorization': "Bearer ${InitialValues.userToken}",
         },
-        data: FormData.fromMap({
-          "personal_photo": await MultipartFile.fromFile(
-            imagePath.toString(),
-            filename: imagePath,
-          ),
-        }),
+        data: data.image.isEmpty
+            ? FormData.fromMap(
+                {
+                  'name': data.name,
+                  'email': data.email,
+                },
+              )
+            : FormData.fromMap(
+                {
+                  'name': data.name,
+                  'email': data.email,
+                  'personal_photo': await MultipartFile.fromFile(
+                    data.image,
+                    filename: data.image,
+                  ),
+                },
+              ),
       );
 
       return Right(GlobalResponseModel.fromJson(response.data));

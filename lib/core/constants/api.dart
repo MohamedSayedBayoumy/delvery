@@ -5,11 +5,14 @@ class Api {
   static const uploadDocument = "/delivery-men/update-delivery-man-needed-info";
   static const logout = "/delivery-men/logout";
 
-  static const updateUserImage = "/delivery-men/update-personal-image";
+  static updateUserImage(String userID) =>
+      "/delivery-men/update-delivery-man/$userID";
 
-  static const updateUserStatus = "/delivery-men/change-delivery-man-online-status";
+  static const updateUserStatus =
+      "/delivery-men/change-delivery-man-online-status";
 
   static const getUserData = "/delivery-men/single-delivery-man-by-token";
 
-  static getNotification(int pageNumber)=> "/notification/all-notifications?page=$pageNumber";
+  static getNotification(int pageNumber) =>
+      "/notification/all-notifications?page=$pageNumber";
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/services/local_storage/local_storage.dart';
+import '../../../../model/model/profile_model/update_user_image.dart';
 import '../../../../model/model/profile_model/user_data_model.dart';
 import '../../../../model/repo_pattern/auth_repo.dart';
 import '../../../../model/repo_pattern/profile_repo.dart';
@@ -56,7 +57,6 @@ class ProfileCubit extends Cubit<ProfileState> {
         emailController.text = userDataModel!.data!.email!;
         phoneController.text = userDataModel!.data!.phoneNumber!;
         userImage = userDataModel!.data!.personalPhoto!;
-
         if (getDocument == true) {
           if (userDataModel!.data!.carType == "1") {
             vichleTypeController.text = "Car";
@@ -88,6 +88,29 @@ class ProfileCubit extends Cubit<ProfileState> {
       (r) {
         SecureLocalStorage.disposeAll();
         emit(SuccessLogout(message: "Successfully logged out"));
+      },
+    );
+  }
+
+  updataUserProfileData(context) async {
+    emit(ProfileLoading());
+    final reuslt = await profileRepository.updateUesr(
+      data: ProfileParam(
+        userId: userDataModel!.data!.id!,
+        name: nameController.text,
+        email: emailController.text,
+        image: userImage,
+      ),
+    );
+
+    Navigator.pop(context);
+
+    reuslt.fold(
+      (l) {
+        emit(FailureProfileCase(message: l.message));
+      },
+      (r) {
+        Navigator.pop(context);
       },
     );
   }

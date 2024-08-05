@@ -134,6 +134,9 @@ class EditProfileScreen extends StatelessWidget {
                 height: 8.h,
                 buttonText: AppLocalizations.of(context)!.change_information,
                 raduis: 0.0,
+                onPressed: () {
+                  profileCubit.updataUserProfileData(context);
+                },
               ),
             ],
           );
