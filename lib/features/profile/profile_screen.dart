@@ -7,12 +7,12 @@ import '../../core/widgets/custom_padding.dart';
 import '../auth/login/login_screen.dart';
 import 'change_password_screeen.dart';
 import 'controller/cubit/profile_cubit.dart';
+import 'edit_profile.dart';
 import 'history_screen.dart';
 import 'language_screen.dart';
 import 'my_cash.dart';
 import 'my_document.dart';
 import 'widget/list_tile_widget.dart';
-import 'widget/profile_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -55,8 +55,16 @@ class ProfileScreen extends StatelessWidget {
 
                 return Column(
                   children: [
-                    ProfileCardWidget(profileCubit: cubit),
-                    const SizedBox(height: 10.0),
+                    ListTileWidget(
+                      title: AppLocalizations.of(context)!.edit_profile,
+                      icon: Icons.person,
+                      to: EditProfileScreen(
+                        profileCubit: cubit,
+                      ),
+                    ),
+                    const Divider(
+                      height: 0.1,
+                    ),
                     ListTileWidget(
                       title: AppLocalizations.of(context)!.my_document,
                       icon: Icons.edit_document,

@@ -6,6 +6,8 @@ final class ProfileInitial extends ProfileState {}
 
 final class ProfileLoading extends ProfileState {}
 
+final class SetUserImage extends ProfileState {}
+
 final class SuccessGetUserData extends ProfileState {}
 
 final class SuccessLogout extends ProfileState {

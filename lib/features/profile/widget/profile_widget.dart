@@ -26,7 +26,7 @@ class ProfileCardWidget extends StatelessWidget {
           CircleAvatar(
             radius: 15.w,
             backgroundColor: Colors.white,
-            child: const Icon(Icons.block_sharp),
+            backgroundImage: NetworkImage(profileCubit.userImage),
           ),
           Expanded(
             child: Column(

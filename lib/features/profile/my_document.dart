@@ -39,21 +39,21 @@ class MyDocumentScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                    Text(AppLocalizations.of(context)!.vehicle_type),
+                  Text(AppLocalizations.of(context)!.vehicle_type),
                   const SizedBox(height: 10.0),
                   CustomTextField(
                     controller: profileCubit.vichleTypeController,
                     enabled: false,
                   ),
                   const SizedBox(height: 25.0),
-                    Text(AppLocalizations.of(context)!.vehicle_number),
+                  Text(AppLocalizations.of(context)!.vehicle_number),
                   const SizedBox(height: 10.0),
                   CustomTextField(
                     enabled: false,
                     controller: profileCubit.vichleNumberController,
                   ),
                   const SizedBox(height: 25.0),
-                    Text(AppLocalizations.of(context)!.license_number),
+                  Text(AppLocalizations.of(context)!.license_number),
                   const SizedBox(height: 10.0),
                   CustomTextField(
                     enabled: false,

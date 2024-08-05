@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../core/functions/loading_ui.dart';
+import '../../core/functions/take_image_dialog.dart';
 import '../../core/widgets/custom_button.dart';
 import '../../core/widgets/custom_padding.dart';
 import '../../core/widgets/custom_text_filed.dart';
@@ -45,12 +48,31 @@ class EditProfileScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            const CircleAvatar(
+                            CircleAvatar(
                               radius: 50.0,
+                              backgroundImage: profileCubit.userImage
+                                      .toString()
+                                      .isEmpty
+                                  ? null
+                                  : profileCubit.userImage
+                                          .toString()
+                                          .startsWith("http")
+                                      ? NetworkImage(profileCubit.userImage)
+                                      : FileImage(File(profileCubit.userImage)),
                             ),
                             const SizedBox(width: 30.0),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                openBottomSheet(
+                                  context,
+                                  onChangedCamera: (camera) {
+                                    profileCubit.setImage(camera);
+                                  },
+                                  onChangedImage: (image) {
+                                    profileCubit.setImage(image);
+                                  },
+                                );
+                              },
                               child: Text(
                                 AppLocalizations.of(context)!.change_picture,
                                 style: const TextStyle(color: Colors.green),

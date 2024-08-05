@@ -33,6 +33,13 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   String countryCode = "";
 
+  String userImage = "";
+
+  setImage(image) {
+    userImage = image;
+    emit(SetUserImage());
+  }
+
   getUserData(context, {bool getDocument = false}) async {
     emit(ProfileLoading());
     final reuslt = await profileRepository.getUserDate();
@@ -48,6 +55,8 @@ class ProfileCubit extends Cubit<ProfileState> {
         nameController.text = userDataModel!.data!.name!;
         emailController.text = userDataModel!.data!.email!;
         phoneController.text = userDataModel!.data!.phoneNumber!;
+        userImage = userDataModel!.data!.personalPhoto!;
+
         if (getDocument == true) {
           if (userDataModel!.data!.carType == "1") {
             vichleTypeController.text = "Car";
