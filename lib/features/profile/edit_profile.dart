@@ -58,7 +58,7 @@ class EditProfileScreen extends StatelessWidget {
                                           .toString()
                                           .startsWith("http")
                                       ? NetworkImage(profileCubit.userImage)
-                                      : FileImage(File(profileCubit.userImage)),
+                                      : FileImage(File(profileCubit.userImage)) as ImageProvider,
                             ),
                             const SizedBox(width: 30.0),
                             TextButton(
