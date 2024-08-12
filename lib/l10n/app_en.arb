@@ -61,5 +61,8 @@
     "bef_dis": "Before Discount",
     "aft_dis": "After Discount",
     "online": "Online",
-    "offline": "Offline"
+    "offline": "Offline",
+    "delivery": "Delivery",
+    "order_return": "Order Return",
+    "order_delever": "Order Delever"
 }

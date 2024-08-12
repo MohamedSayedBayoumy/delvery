@@ -61,5 +61,8 @@
   "bef_dis": "قبل الخصم",
   "aft_dis": "بعد الخصم",
   "online": "متصل",
-  "offline": "غير متصل"
+  "offline": "غير متصل",
+  "delivery": "توصيل",
+  "order_return":"عدم الاستلام",
+  "order_delever":"تم التوصيل"
 }

@@ -5,12 +5,14 @@ class CustomPadding extends StatelessWidget {
   final double? start;
   final double? end;
   final double? top;
+  final double? bottom;
   final Widget child;
   const CustomPadding({
     super.key,
     this.start,
     this.end,
     this.top,
+    this.bottom,
     required this.child,
   });
 
@@ -21,6 +23,7 @@ class CustomPadding extends StatelessWidget {
         start: start ?? 4.w,
         end: end ?? 4.w,
         top: top ?? 0.0.h,
+        bottom: bottom ?? 0.0.h
       ),
       child: child,
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mts/core/widgets/custom_button.dart';
 import 'package:mts/core/widgets/custom_padding.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -172,6 +173,39 @@ class OrdersScreen extends StatelessWidget {
                                         fontWeight: FontWeight.w900,
                                       ),
                                     ),
+                                    const SizedBox(height: 10.0),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: CustomButton(
+                                            onPressed: () {},
+                                            buttonText: "order Return",
+                                            buttonColor: Colors.red,
+                                            borderColor: Colors.red,
+                                            raduis: 7.0,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 10.0),
+                                        Expanded(
+                                          child: CustomButton(
+                                            onPressed: () {},
+                                            buttonText: "تم التوصيل",
+                                            buttonColor: Colors.green,
+                                            borderColor: Colors.green,
+                                            raduis: 7.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 5.0),
+                                    CustomButton(
+                                      onPressed: () {},
+                                      buttonText: AppLocalizations.of(context)!.delivery,
+                                      buttonColor: Colors.blue,
+                                      borderColor: Colors.blue,
+                                      raduis: 7.0,
+                                    ),
+                                    const SizedBox(height: 1.0),
                                   ],
                                 ),
                               ),

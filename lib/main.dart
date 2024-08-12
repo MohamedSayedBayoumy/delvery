@@ -5,6 +5,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'core/services/get_it/single_tone.dart';
 import 'core/utils/initial_values.dart';
+import 'features/delevery_order/delevery_order_screen.dart';
 import 'features/splash_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -58,7 +59,7 @@ class MyApp extends StatelessWidget {
             child: child!,
           );
         },
-        home: const SplashScreen(),
+        home: const DeleveryOrderScreen(),
       ),
     );
   }
