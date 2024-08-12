@@ -59,5 +59,7 @@
     "address": "Address",
     "total_price": "Total price",
     "bef_dis": "Before Discount",
-    "aft_dis": "After Discount"
+    "aft_dis": "After Discount",
+    "online": "Online",
+    "offline": "Offline"
 }

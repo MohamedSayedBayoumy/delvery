@@ -38,7 +38,15 @@ class OrdersScreen extends StatelessWidget {
             appBar: state is LoadingOrderCase
                 ? AppBar()
                 : AppBar(
-                    title: const Text("Moahamed"),
+                    title: InitialValues.userStatus == "1"
+                        ? Text(
+                            AppLocalizations.of(context)!.online,
+                            style: const TextStyle(color: Colors.green),
+                          )
+                        : Text(
+                            AppLocalizations.of(context)!.offline,
+                            style: const TextStyle(color: Colors.red),
+                          ),
                     actions: [
                       Switch(
                         // This bool value toggles the switch.
