@@ -26,7 +26,7 @@ class OrderData {
   int? currentPage;
   int? pages;
   int? count;
-  List<Data>? data;
+  List<OrderDetails>? data;
 
   OrderData(
       {this.currentPage = 99999999,
@@ -39,9 +39,9 @@ class OrderData {
     pages = json['pages'];
     count = json['count'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <OrderDetails>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(OrderDetails.fromJson(v));
       });
     }
   }
@@ -58,7 +58,7 @@ class OrderData {
   }
 }
 
-class Data {
+class OrderDetails {
   String? id;
   int? status;
   int? itemNumber;
@@ -76,7 +76,7 @@ class Data {
   String? totalPrice;
   String? createdAt;
 
-  Data({
+  OrderDetails({
     this.id = "",
     this.status = 9999999999999,
     this.itemNumber = 9999999999999,
@@ -95,7 +95,7 @@ class Data {
     this.createdAt = "",
   });
 
-  Data.fromJson(Map<String, dynamic> json) {
+  OrderDetails.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     status = json['status'];
     itemNumber = json['item_number'];

@@ -7,6 +7,10 @@ class Api {
 
   static const getOrders = "/delivery-men/all-intial-orders-requests";
 
+  static getOrdersById(id) => "/orders/single-order/$id";
+
+  static const changeOrderStatus = "/orders/change-order-status";
+
   static updateUserImage(String userID) =>
       "/delivery-men/update-delivery-man/$userID";
 

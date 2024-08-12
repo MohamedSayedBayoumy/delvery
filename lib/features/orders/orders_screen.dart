@@ -1,14 +1,17 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mts/core/widgets/custom_button.dart';
-import 'package:mts/core/widgets/custom_padding.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../core/constants/colors.dart';
 import '../../core/functions/loading_ui.dart';
 import '../../core/services/get_it/single_tone.dart';
+import '../../core/utils/enums.dart';
 import '../../core/utils/initial_values.dart';
+import '../../core/widgets/custom_padding.dart';
 import 'controller/cubit/order_cubit.dart';
+import 'widgets/card_ui_widget.dart';
 import 'widgets/empty_case_widget.dart';
 import 'widgets/offline_case_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -89,126 +92,38 @@ class OrdersScreen extends StatelessWidget {
                         ] else ...[
                           // user`s order
                           ...cubit.orderModel!.orderData!.data!.map(
-                            (e) => Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 10.0),
-                              child: Container(
-                                width: 100.w,
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 5.0,
-                                  vertical: 5.0,
-                                ),
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black),
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "#${e.itemNumber}",
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 5.0,
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            "${AppLocalizations.of(context)!.address} : ",
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              "${e.userAddress!.first.title}",
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(height: 7.0),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "${AppLocalizations.of(context)!.total_price} : ",
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.w900,
-                                          ),
-                                        ),
-                                        Text(
-                                          "${e.totalPrice}",
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.w900,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 10.0),
-                                        // Expanded(
-                                        //   child: Container(
-                                        //     width: 100.w,
-                                        //     height: 10.h,
-                                        //     color: Colors.black,
-                                        //     child: Column(
-                                        //       children: [
-                                        //         Row(
-                                        //           children: [
-                                        //             Text(
-                                        //                 "${AppLocalizations.of(context)!.total_price} : "),
-                                        //             Text(
-                                        //                 "${e.products.first}"),
-                                        //           ],
-                                        //         ),
-                                        //         Row(),
-                                        //       ],
-                                        //     ),
-                                        //   ),
-                                        // )
-                                      ],
-                                    ),
-                                    const SizedBox(height: 8.0),
-                                    Text(
-                                      "${e.createdAt}",
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 10.0),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: CustomButton(
-                                            onPressed: () {},
-                                            buttonText: "order Return",
-                                            buttonColor: Colors.red,
-                                            borderColor: Colors.red,
-                                            raduis: 7.0,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 10.0),
-                                        Expanded(
-                                          child: CustomButton(
-                                            onPressed: () {},
-                                            buttonText: "تم التوصيل",
-                                            buttonColor: Colors.green,
-                                            borderColor: Colors.green,
-                                            raduis: 7.0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 5.0),
-                                    CustomButton(
-                                      onPressed: () {},
-                                      buttonText: AppLocalizations.of(context)!.delivery,
-                                      buttonColor: Colors.blue,
-                                      borderColor: Colors.blue,
-                                      raduis: 7.0,
-                                    ),
-                                    const SizedBox(height: 1.0),
-                                  ],
-                                ),
-                              ),
+                            (e) => OrderCardWidget(
+                              e: e,
+                              isOrderDelevering:
+                                  cubit.isOrderDelevering(e.itemNumber),
+                              orderById: cubit.orderById,
+                              onPressedDeleverd: () {
+                                cubit.changeOrderStatus(
+                                  context,
+                                  id: e.id!,
+                                  newStatusOrder: OrderProcess.orderDelivered,
+                                );
+                              },
+                              onPressedReturn: () {
+                                cubit.changeOrderStatus(
+                                  context,
+                                  id: e.id!,
+                                  newStatusOrder: OrderProcess.orderReturn,
+                                );
+                              },
+                              onPressedOpenMap: () {
+                                cubit.openMap();
+                              },
+                              onPressedDeleveryOrder: () {
+                                if (cubit.orderById == null) {
+                                  cubit.changeOrderStatus(
+                                    context,
+                                    id: e.id!,
+                                    newStatusOrder:
+                                        OrderProcess.orderOutOfDelivery,
+                                  );
+                                }
+                              },
                             ),
                           )
                         ],

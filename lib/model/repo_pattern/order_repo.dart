@@ -7,11 +7,21 @@ import '../../core/constants/api.dart';
 import '../../core/error/failure.dart';
 import '../../core/services/dio/dio_services.dart';
 import '../../core/utils/initial_values.dart';
+import '../model/change_order_status_model.dart';
 import '../model/global_response.dart';
+import '../model/order_details.dart';
 import '../model/order_model.dart';
 
 abstract class OrderRepository {
   Future<Either<FailureHandler, OrderModel>> getOrders();
+
+  Future<Either<FailureHandler, OrderById>> getDetailsById(id);
+
+  Future<Either<FailureHandler, ChangeStatusModel>> changeOrderStatus({
+    required String orderId,
+    required String newStatus,
+  });
+
   Future<Either<FailureHandler, GlobalResponseModel>> changeUserStatus(
       {String newStatus});
 }
@@ -58,6 +68,64 @@ class OrderImple implements OrderRepository {
       );
 
       return Right(OrderModel.fromJson(response.data));
+    } on DioException catch (e) {
+      log("${e.response!.data}");
+
+      return Left(
+        FailureCase(
+          message: e.response!.data["message"] ?? "Something is wrong",
+          status: e.response!.data["status"],
+          failuresCases: e.response!.data["data"] ?? [],
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<FailureHandler, OrderById>> getDetailsById(id) async {
+    try {
+      final response = await DioServices.get(
+        url: Api.getOrdersById(id),
+        headers: {
+          'Authorization': "Bearer ${InitialValues.userToken}",
+        },
+      );
+
+      return Right(OrderById.fromJson(response.data));
+    } on DioException catch (e) {
+      log("${e.response!.data}");
+
+      return Left(
+        FailureCase(
+          message: e.response!.data["message"] ?? "Something is wrong",
+          status: e.response!.data["status"],
+          failuresCases: e.response!.data["data"] ?? [],
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<FailureHandler, ChangeStatusModel>> changeOrderStatus(
+      {required String orderId, required String newStatus}) async {
+    try {
+      final response = await DioServices.post(
+        url: Api.changeOrderStatus,
+        headers: {
+          'Authorization': "Bearer ${InitialValues.userToken}",
+        },
+        data: FormData.fromMap({
+          'order_id': orderId,
+          'order_status': newStatus,
+        }),
+        // 1 => order Pending
+// 2 => order Processing
+// 3 => order Out Of Delivery
+// 4 => order Delivered
+// 5 => order Return
+      );
+
+      return Right(ChangeStatusModel.fromJson(response.data));
     } on DioException catch (e) {
       log("${e.response!.data}");
 
