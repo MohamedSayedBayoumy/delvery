@@ -63,6 +63,8 @@
   "online": "متصل",
   "offline": "غير متصل",
   "delivery": "توصيل",
-  "order_return":"عدم الاستلام",
-  "order_delever":"تم التوصيل"
+  "order_return": "عدم الاستلام",
+  "order_delever": "تم التوصيل",
+  "order_on": "رقم الاورود",
+  "order_time":"وقت الطلب"
 }

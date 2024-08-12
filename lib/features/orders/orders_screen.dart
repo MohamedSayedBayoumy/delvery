@@ -11,7 +11,7 @@ import '../../core/utils/enums.dart';
 import '../../core/utils/initial_values.dart';
 import '../../core/widgets/custom_padding.dart';
 import 'controller/cubit/order_cubit.dart';
-import 'widgets/card_ui_widget.dart';
+import 'widgets/card/card_ui_widget.dart';
 import 'widgets/empty_case_widget.dart';
 import 'widgets/offline_case_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
