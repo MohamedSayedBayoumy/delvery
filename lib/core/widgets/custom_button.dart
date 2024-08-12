@@ -74,13 +74,13 @@ class CustomButton extends StatelessWidget {
                   ] else ...[
                     icon!,
                   ],
-                  const SizedBox(width: 8.0),
-                  Text(
-                    "$buttonText",
-                    style: fontColor != null
-                        ? ConstantsFonts.buttonStyle.copyWith(color: fontColor)
-                        : ConstantsFonts.buttonStyle,
-                  ),
+                  // const SizedBox(width: 8.0),
+                  // Text(
+                  //   "$buttonText",
+                  //   style: fontColor != null
+                  //       ? ConstantsFonts.buttonStyle.copyWith(color: fontColor)
+                  //       : ConstantsFonts.buttonStyle,
+                  // ),
                 ],
               )
             : Text(

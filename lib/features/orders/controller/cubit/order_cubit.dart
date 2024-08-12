@@ -166,8 +166,6 @@ class OrderCubit extends Cubit<OrderState> {
           value: json.encode(r.toJson()),
         );
 
-        Navigator.pop(context);
-
         emit(GetOrdersCase());
       },
     );
@@ -187,10 +185,8 @@ class OrderCubit extends Cubit<OrderState> {
 
   bool isOrderDelevering(id) {
     if (orderById == null) {
-      log(">>> is Null >>>>");
       return false;
     } else {
-      log(">>> is Not Null >>>>");
       if (id == orderById!.data.itemNumber) {
         return true;
       } else {
@@ -223,7 +219,11 @@ class OrderCubit extends Cubit<OrderState> {
     }
   }
 
-  resetAll(context) {
+  resetAll(context) async {
+    await SecureLocalStorage.set(
+      key: SecureLocalStorage.orderById,
+      value: null,
+    );
     orderById = null;
     getOrders(context);
     emit(GetOrdersCase());

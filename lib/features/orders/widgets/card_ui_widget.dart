@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../../core/utils/enums.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../../../model/model/order_details.dart';
 import '../../../model/model/order_model.dart';
@@ -140,23 +141,44 @@ class OrderCardWidget extends StatelessWidget {
             ],
             Row(
               children: [
-                if (isOrderDelevering == true) ...[
-                  Expanded(
-                    flex: 5,
-                    child: CustomButton(
-                      onPressed: onPressedDeleveryOrder,
-                      buttonText: AppLocalizations.of(context)!.delivery,
-                      buttonColor: Colors.blue,
-                      borderColor: Colors.blue,
-                      raduis: 7.0,
+                ...[
+                  if (orderById != null) ...[
+                    if (e.itemNumber == orderById!.data.itemNumber) ...[
+                      Expanded(
+                        flex: 5,
+                        child: CustomButton(
+                          onPressed: onPressedDeleveryOrder,
+                          buttonText: AppLocalizations.of(context)!.delivery,
+                          buttonColor: Colors.blue,
+                          borderColor: Colors.blue,
+                          raduis: 7.0,
+                        ),
+                      ),
+                    ]
+                  ] else ...[
+                    Expanded(
+                      flex: 5,
+                      child: CustomButton(
+                        onPressed: onPressedDeleveryOrder,
+                        buttonText: AppLocalizations.of(context)!.delivery,
+                        buttonColor: Colors.blue,
+                        borderColor: Colors.blue,
+                        raduis: 7.0,
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 10.0),
+                  ],
+                ],
+                if (isOrderDelevering == true) ...[
+                  const SizedBox(width: 5.0),
                   Expanded(
                     child: CustomButton(
-                      width: 10.0,
+                      width: 7.0,
                       onPressed: onPressedOpenMap,
-                      buttonText: AppLocalizations.of(context)!.delivery,
+                      icon: Icon(
+                        Icons.location_on_rounded,
+                        color: Colors.red.shade600,
+                      ),
+                      typeIcon: IconType.iconData,
                       buttonColor: Colors.white,
                       borderColor: Colors.black,
                       raduis: 7.0,
