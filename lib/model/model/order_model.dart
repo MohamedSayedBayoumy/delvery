@@ -1,22 +1,22 @@
 class OrderModel {
   String? message;
   bool? status;
-  OrderData? data;
+  OrderData? orderData;
 
-  OrderModel({this.message, this.status, this.data});
+  OrderModel({this.message, this.status, this.orderData});
 
   OrderModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
-    data = json['data'] != null ? OrderData.fromJson(json['data']) : null;
+    orderData = json['data'] != null ? OrderData.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['message'] = message;
     data['status'] = status;
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
+    if (orderData != null) {
+      data['data'] = orderData!.toJson();
     }
     return data;
   }
@@ -26,7 +26,7 @@ class OrderData {
   int? currentPage;
   int? pages;
   int? count;
-  List<OrderData>? data;
+  List<Data>? data;
 
   OrderData(
       {this.currentPage = 99999999,
@@ -39,9 +39,9 @@ class OrderData {
     pages = json['pages'];
     count = json['count'];
     if (json['data'] != null) {
-      data = <OrderData>[];
+      data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(OrderData.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
   }

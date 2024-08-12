@@ -55,5 +55,9 @@
     "orders": "Orders",
     "profile": "Profile",
     "offline_status": "Now You are Offline , let's Start",
-    "empty_case": "You haven't any new orders available right now."
+    "empty_case": "You haven't any new orders available right now.",
+    "address": "Address",
+    "total_price": "Total price",
+    "bef_dis": "Before Discount",
+    "aft_dis": "After Discount"
 }

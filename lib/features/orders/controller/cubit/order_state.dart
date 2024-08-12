@@ -6,6 +6,8 @@ final class OrderInitial extends OrderState {}
 
 final class LoadingOrderCase extends OrderState {}
 
+final class GetOrdersCase extends OrderState {}
+
 final class GetUserStatus extends OrderState {}
 
 final class SuccessChangeUserStatus extends OrderState {}

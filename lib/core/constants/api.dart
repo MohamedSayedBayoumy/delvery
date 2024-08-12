@@ -5,6 +5,8 @@ class Api {
   static const uploadDocument = "/delivery-men/update-delivery-man-needed-info";
   static const logout = "/delivery-men/logout";
 
+  static const getOrders = "/delivery-men/all-intial-orders-requests";
+
   static updateUserImage(String userID) =>
       "/delivery-men/update-delivery-man/$userID";
 

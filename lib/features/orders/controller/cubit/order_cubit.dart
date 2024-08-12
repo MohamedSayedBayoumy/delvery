@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mts/model/model/order_model.dart';
 
 import '../../../../core/services/local_storage/local_storage.dart';
 import '../../../../core/utils/initial_values.dart';
@@ -20,6 +20,8 @@ class OrderCubit extends Cubit<OrderState> {
   String getCurrentUserStatus = "1";
 
   bool isOnlineUserStatus = false;
+
+  OrderModel? orderModel;
 
   changeUserStatus(context) async {
     emit(LoadingOrderCase());
@@ -45,6 +47,7 @@ class OrderCubit extends Cubit<OrderState> {
             value: "2",
           );
           InitialValues.userStatus = "2";
+          emit(SuccessChangeUserStatus());
         } else {
           isOnlineUserStatus = true;
           await SecureLocalStorage.set(
@@ -52,8 +55,13 @@ class OrderCubit extends Cubit<OrderState> {
             value: "1",
           );
           InitialValues.userStatus = "1";
+          Future.delayed(
+            const Duration(seconds: 2),
+            () {
+              getOrders(context);
+            },
+          );
         }
-        emit(SuccessChangeUserStatus());
       },
     );
   }
@@ -70,7 +78,7 @@ class OrderCubit extends Cubit<OrderState> {
     }
   }
 
-  getUserStatus() {
+  getUserStatus(context) {
     emit(LoadingOrderCase());
 
     if (InitialValues.userStatus == "1") {
@@ -78,6 +86,27 @@ class OrderCubit extends Cubit<OrderState> {
     } else {
       isOnlineUserStatus = false;
     }
-    emit(GetUserStatus());
+
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        getOrders(context);
+      },
+    );
+  }
+
+  getOrders(context) async {
+    final result = await orderRepository.getOrders();
+    // Navigator.pop(context);
+
+    result.fold(
+      (l) {
+        emit(FailureChangeUserStatus(message: l.message));
+      },
+      (r) {
+        orderModel = r;
+        emit(GetOrdersCase());
+      },
+    );
   }
 }

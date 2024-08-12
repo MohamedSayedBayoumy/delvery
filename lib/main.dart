@@ -8,18 +8,16 @@ import 'core/utils/initial_values.dart';
 import 'features/splash_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 Future<void> main() async {
- 
-    WidgetsFlutterBinding.ensureInitialized();
-    ServicesLocator.service();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
-    InitialValues.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  ServicesLocator.service();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  InitialValues.init();
 
-    runApp(const MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

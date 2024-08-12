@@ -8,8 +8,10 @@ import '../../core/error/failure.dart';
 import '../../core/services/dio/dio_services.dart';
 import '../../core/utils/initial_values.dart';
 import '../model/global_response.dart';
+import '../model/order_model.dart';
 
 abstract class OrderRepository {
+  Future<Either<FailureHandler, OrderModel>> getOrders();
   Future<Either<FailureHandler, GlobalResponseModel>> changeUserStatus(
       {String newStatus});
 }
@@ -32,6 +34,30 @@ class OrderImple implements OrderRepository {
       );
 
       return Right(GlobalResponseModel.fromJson(response.data));
+    } on DioException catch (e) {
+      log("${e.response!.data}");
+
+      return Left(
+        FailureCase(
+          message: e.response!.data["message"] ?? "Something is wrong",
+          status: e.response!.data["status"],
+          failuresCases: e.response!.data["data"] ?? [],
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<FailureHandler, OrderModel>> getOrders() async {
+    try {
+      final response = await DioServices.get(
+        url: Api.getOrders,
+        headers: {
+          'Authorization': "Bearer ${InitialValues.userToken}",
+        },
+      );
+
+      return Right(OrderModel.fromJson(response.data));
     } on DioException catch (e) {
       log("${e.response!.data}");
 

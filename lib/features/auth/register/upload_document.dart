@@ -10,8 +10,8 @@ import '../../../core/utils/navigation.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_padding.dart';
 import '../../../core/widgets/custom_text_filed.dart';
+import '../../bottom_navigation/bottom_navigation_screen.dart';
 import '../controller/cubit/auth_cubit.dart';
-import 'set_location.dart';
 import 'widget/container_upload_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -38,7 +38,7 @@ class UploadDocumentScreen extends StatelessWidget {
               if (state is SuccessAuth) {
                 NavigationHelper.navigateRemoveUntilTo(
                   context,
-                  const SelectLocationScreen(),
+                  const BottomNavigationBarScreens(),
                 );
               } else if (state is FailureAuth) {
                 final snackBar = SnackBar(

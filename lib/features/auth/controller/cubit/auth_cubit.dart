@@ -145,7 +145,11 @@ class AuthCubit extends Cubit<AuthState> {
       (l) {
         emit(FailureAuth(message: l.message));
       },
-      (r) {
+      (r) async {
+        await SecureLocalStorage.set(
+          key: SecureLocalStorage.userCompeleteRequriedData,
+          value: "true"
+        );
         emit(SuccessAuth());
       },
     );
