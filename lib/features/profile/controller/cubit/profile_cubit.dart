@@ -114,4 +114,16 @@ class ProfileCubit extends Cubit<ProfileState> {
       },
     );
   }
+
+  bool userHaveOrder = false;
+
+  userHaveOrderInProcess() async {
+    final order = await SecureLocalStorage.get(SecureLocalStorage.orderById);
+    if (order == "empty") {
+      userHaveOrder = false;
+    } else {
+      userHaveOrder = true;
+    }
+    emit(CheckDoneState());
+  }
 }

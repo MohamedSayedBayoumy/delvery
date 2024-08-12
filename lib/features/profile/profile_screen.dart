@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: CustomPadding(
           child: BlocProvider<ProfileCubit>(
-            create: (context) => sl<ProfileCubit>(),
+            create: (context) => sl<ProfileCubit>()..userHaveOrderInProcess(),
             child: BlocConsumer<ProfileCubit, ProfileState>(
               listener: (context, state) {
                 if (state is ProfileLoading) {
@@ -119,13 +119,15 @@ class ProfileScreen extends StatelessWidget {
                     const Divider(
                       height: 0.1,
                     ),
-                    ListTileWidget(
-                      title: AppLocalizations.of(context)!.sign_out,
-                      icon: Icons.login_sharp,
-                      onTap: () {
-                        cubit.logout(context);
-                      },
-                    ),
+                    if (cubit.userHaveOrder == false) ...[
+                      ListTileWidget(
+                        title: AppLocalizations.of(context)!.sign_out,
+                        icon: Icons.login_sharp,
+                        onTap: () {
+                          cubit.logout(context);
+                        },
+                      ),
+                    ],
                   ],
                 );
               },
