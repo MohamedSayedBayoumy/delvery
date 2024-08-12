@@ -87,7 +87,7 @@ class OrderCubit extends Cubit<OrderState> {
     }
   }
 
-  getUserStatus(context) {
+  getUserStatus(context, {bool addNavigation = false}) {
     emit(LoadingOrderCase());
 
     if (InitialValues.userStatus == "1") {
@@ -99,14 +99,13 @@ class OrderCubit extends Cubit<OrderState> {
     Future.delayed(
       const Duration(seconds: 2),
       () {
-        getOrders(context);
+        getOrders(context, addNavigation: addNavigation);
       },
     );
   }
 
-  getOrders(context) async {
+  getOrders(context, {bool addNavigation = false}) async {
     final result = await orderRepository.getOrders();
-    // Navigator.pop(context);
 
     result.fold(
       (l) {
@@ -114,7 +113,7 @@ class OrderCubit extends Cubit<OrderState> {
       },
       (r) {
         orderModel = r;
-        checkUserHaveOrderInProcess();
+        checkUserHaveOrderInProcess(context , addNavigation: addNavigation);
       },
     );
   }
@@ -195,7 +194,7 @@ class OrderCubit extends Cubit<OrderState> {
     }
   }
 
-  checkUserHaveOrderInProcess() async {
+  checkUserHaveOrderInProcess(context, {bool addNavigation = false}) async {
     final order = await SecureLocalStorage.get(SecureLocalStorage.orderById);
 
     if (order != "empty") {
@@ -206,6 +205,10 @@ class OrderCubit extends Cubit<OrderState> {
     } else {
       log("### User Not Have Order");
     }
+    if (addNavigation == true) {
+      Navigator.pop(context);
+    }
+
     emit(GetOrdersCase());
   }
 

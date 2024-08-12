@@ -48,7 +48,7 @@ class _BottomNavigationBarScreensState
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onItemTapped,
         backgroundColor: Colors.white,
-        elevation: 0.0,
+        elevation: 12.0,
         type: BottomNavigationBarType.fixed,
         currentIndex: selectedIndex,
         selectedItemColor: ConstantsColor.greenColor,

@@ -39,6 +39,9 @@ class OrdersScreen extends StatelessWidget {
           final cubit = OrderCubit.get(context);
 
           return Scaffold(
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerTop,
+            // floatingActionButton:
             appBar: state is LoadingOrderCase
                 ? AppBar()
                 : AppBar(
@@ -60,6 +63,21 @@ class OrdersScreen extends StatelessWidget {
                           cubit.changeUserStatus(context);
                         },
                       ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: InkWell(
+                          onTap: () {
+                            cubit.getUserStatus(context, addNavigation: true);
+                          },
+                          child: Center(
+                            child: Text(
+                              AppLocalizations.of(context)!.update,
+                              style: const TextStyle(
+                                  color: ConstantsColor.greenColor),
+                            ),
+                          ),
+                        ),
+                      )
                     ],
                   ),
             body: SizedBox(

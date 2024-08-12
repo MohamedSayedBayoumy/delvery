@@ -66,5 +66,6 @@
     "order_return": "Order Return",
     "order_delever": "Order Delever",
     "order_on": "Order on",
-    "order_time": "Order Time"
+    "order_time": "Order Time",
+    "update": "Update"
 }

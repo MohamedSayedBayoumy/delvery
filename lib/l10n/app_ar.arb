@@ -66,5 +66,6 @@
   "order_return": "عدم الاستلام",
   "order_delever": "تم التوصيل",
   "order_on": "رقم الاورود",
-  "order_time":"وقت الطلب"
+  "order_time":"وقت الطلب",
+  "update":"تحديث"
 }
