@@ -20,15 +20,11 @@ class PriceWidget extends StatelessWidget {
             children: [
               Text(
                 "${AppLocalizations.of(context)!.total_price} : ",
-                style: const TextStyle(
-                  fontWeight: FontWeight.w900,
-                ),
+                style: const TextStyle(),
               ),
               Text(
                 "${e.totalPrice}",
-                style: const TextStyle(
-                  fontWeight: FontWeight.w900,
-                ),
+                style: const TextStyle(),
               ),
             ],
           ),

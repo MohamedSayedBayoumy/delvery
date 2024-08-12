@@ -55,29 +55,37 @@ class OrdersScreen extends StatelessWidget {
                             style: const TextStyle(color: Colors.red),
                           ),
                     actions: [
-                      Switch(
-                        // This bool value toggles the switch.
-                        value: cubit.isOnlineUserStatus,
-                        activeColor: ConstantsColor.greenColor,
-                        onChanged: (bool value) {
-                          cubit.changeUserStatus(context);
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: InkWell(
-                          onTap: () {
-                            cubit.getUserStatus(context, addNavigation: true);
+                      if (cubit.orderById == null) ...[
+                        Switch(
+                          // This bool value toggles the switch.
+                          value: cubit.isOnlineUserStatus,
+                          activeColor: ConstantsColor.greenColor,
+                          onChanged: (bool value) {
+                            cubit.changeUserStatus(context);
                           },
-                          child: Center(
-                            child: Text(
-                              AppLocalizations.of(context)!.update,
-                              style: const TextStyle(
-                                  color: ConstantsColor.greenColor),
-                            ),
-                          ),
                         ),
-                      )
+                      ],
+                      if (InitialValues.userStatus == "1") ...[
+                        if (cubit.orderById == null) ...[
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: InkWell(
+                              onTap: () {
+                                cubit.getUserStatus(context,
+                                    addNavigation: true);
+                              },
+                              child: Center(
+                                child: Text(
+                                  AppLocalizations.of(context)!.update,
+                                  style: const TextStyle(
+                                      color: ConstantsColor.greenColor),
+                                ),
+                              ),
+                            ),
+                          )
+                        ]
+                      ],
                     ],
                   ),
             body: SizedBox(
