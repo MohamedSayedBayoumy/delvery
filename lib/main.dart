@@ -1,29 +1,67 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'core/services/get_it/single_tone.dart';
+import 'core/services/local_storage/local_storage.dart';
 import 'core/utils/initial_values.dart';
 import 'features/splash_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 Future<void> main() async {
- 
-    WidgetsFlutterBinding.ensureInitialized();
-    ServicesLocator.service();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
-    InitialValues.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  ServicesLocator.service();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  InitialValues.init();
 
-    runApp(const MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+  static void setLocale(BuildContext context, Locale newLocale) {
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    log("message>?>>>>>>>>>>>>>>>>Q1111111111111111111");
+    state?.setLocale(newLocale);
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale? newLocale;
+
+  setLocale(Locale locale) {
+    log("message>?>>>>>>>>>>>>>>>>QQQQQQQQQQ");
+
+    setState(() {
+      newLocale = locale;
+    });
+  }
+
+  Future<Locale> getLocale() async {
+    log("message>?>>>>>>>>>>>>>>>>11111111111111111111111111");
+    final localString = await SecureLocalStorage.get(
+      SecureLocalStorage.langeKey,
+    );
+    // ignore: use_build_context_synchronously
+    MyApp.setLocale(context, Locale(localString));
+    return Locale(localString);
+  }
+
+  @override
+  void didChangeDependencies() {
+    log("message>?>>>>>>>>>>>>>>>>");
+    getLocale().then((locale) => {setLocale(locale)});
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +79,7 @@ class MyApp extends StatelessWidget {
           Locale('en'), // English
           Locale('ar'), // Spanish
         ],
-        locale: const Locale("ar"),
+        locale: newLocale,
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
           useMaterial3: false,

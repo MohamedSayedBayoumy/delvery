@@ -11,6 +11,8 @@ class SecureLocalStorage {
 
   static String orderById = "orderById";
 
+  static String langeKey = "langeKey";
+
   static Future<void> set({String? key, String? value}) async {
     await storage.write(key: key!, value: value);
   }
