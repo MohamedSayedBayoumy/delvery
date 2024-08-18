@@ -16,6 +16,8 @@ final class SuccessGetUserData extends ProfileState {}
 
 final class SuccessGetHistoryData extends ProfileState {}
 
+final class SuccessGetBalance extends ProfileState {}
+
 final class ChangeTab extends ProfileState {}
 
 final class SuccessLogout extends ProfileState {

@@ -84,7 +84,7 @@ class ProfileScreen extends StatelessWidget {
                     ListTileWidget(
                       title: AppLocalizations.of(context)!.my_cash_balance,
                       icon: Icons.wallet_rounded,
-                      to: const MyCashBalanceScreen(),
+                      to: MyCashBalanceScreen(profileCubit: cubit),
                     ),
                     const Divider(
                       height: 0.1,

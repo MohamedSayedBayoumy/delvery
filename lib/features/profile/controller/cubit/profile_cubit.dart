@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/services/local_storage/local_storage.dart';
+import '../../../../model/model/profile_model/balance_model.dart';
 import '../../../../model/model/profile_model/history_model.dart';
 import '../../../../model/model/profile_model/update_user_image.dart';
 import '../../../../model/model/profile_model/user_data_model.dart';
@@ -24,6 +24,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   UserDataModel? userDataModel;
 
   HistoryModel? historyModel;
+
+  TotalBalanceModel? totalBalanceModel;
 
   Color currentColor = Colors.green;
 
@@ -165,5 +167,23 @@ class ProfileCubit extends Cubit<ProfileState> {
       getHistory(context, status: 4);
     }
     emit(ChangeTab());
+  }
+
+  getTotalBalance(context) async {
+    emit(ProfileLoading());
+
+    final reuslt = await profileRepository.getTotalBalance();
+
+    Navigator.pop(context);
+
+    reuslt.fold(
+      (l) {
+        emit(FailureProfileCase(message: l.message));
+      },
+      (r) {
+        totalBalanceModel = r;
+        emit(SuccessGetBalance());
+      },
+    );
   }
 }

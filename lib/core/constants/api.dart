@@ -19,8 +19,9 @@ class Api {
 
   static const getUserData = "/delivery-men/single-delivery-man-by-token";
 
-  static historyDate(status) =>
-      "/orders/all-orders-with-status?status=$status";
+  static historyDate(status) => "/orders/all-orders-with-status?status=$status";
+
+  static const totalBalanceDate = "/orders/all-orders-total";
 
   static getNotification(int pageNumber) =>
       "/notification/all-notifications?page=$pageNumber";

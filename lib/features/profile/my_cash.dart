@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../core/constants/colors.dart';
+import '../../core/functions/loading_ui.dart';
 import '../../core/widgets/custom_padding.dart';
-import '../../core/widgets/custom_text_filed.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'controller/cubit/profile_cubit.dart';
+
 class MyCashBalanceScreen extends StatelessWidget {
-  const MyCashBalanceScreen({super.key});
+  final ProfileCubit profileCubit;
+
+  const MyCashBalanceScreen({super.key, required this.profileCubit});
 
   @override
   Widget build(BuildContext context) {
@@ -18,40 +23,56 @@ class MyCashBalanceScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: CustomPadding(
-          child: Column(
-            children: [
-              Container(
-                width: 100.0.w,
-                padding: const EdgeInsets.all(15.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7.0),
-                  color: ConstantsColor.fillTextFiled.withOpacity(.5),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.total_balance,
-                      style: const TextStyle(color: Colors.black54),
+          child: BlocConsumer<ProfileCubit, ProfileState>(
+            bloc: profileCubit..getTotalBalance(context),
+            listener: (context, state) {
+              if (state is ProfileLoading) {
+                loadingAlert(context);
+              } else if (state is FailureProfileCase) {
+                final snackBar = SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text(state.message),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              } else {}
+            },
+            builder: (context, state) {
+              return Column(
+                children: [
+                  Container(
+                    width: 100.0.w,
+                    padding: const EdgeInsets.all(15.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(7.0),
+                      color: ConstantsColor.fillTextFiled.withOpacity(.5),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: Text(
-                        "\$0",
-                        style: TextStyle(color: Colors.green),
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          AppLocalizations.of(context)!.total_balance,
+                          style: const TextStyle(color: Colors.black54),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: state is ProfileLoading
+                              ? const Text(
+                                  "",
+                                  style: TextStyle(color: Colors.green),
+                                )
+                              : Text(
+                                  profileCubit
+                                      .totalBalanceModel!.data!.totalPrice
+                                      .toString(),
+                                  style: const TextStyle(color: Colors.green),
+                                ),
+                        ),
+                      ],
                     ),
-                    CustomTextField(
-                      hinText: AppLocalizations.of(context)!.search_order_id,
-                      labelText: AppLocalizations.of(context)!.search_order_id,
-                      controller: TextEditingController(),
-                      suffixWidget:
-                          const Icon(Icons.search, color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),

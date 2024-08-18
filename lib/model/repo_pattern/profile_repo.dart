@@ -8,6 +8,7 @@ import '../../core/error/failure.dart';
 import '../../core/services/dio/dio_services.dart';
 import '../../core/utils/initial_values.dart';
 import '../model/global_response.dart';
+import '../model/profile_model/balance_model.dart';
 import '../model/profile_model/history_model.dart';
 import '../model/profile_model/update_user_image.dart';
 import '../model/profile_model/user_data_model.dart';
@@ -19,6 +20,7 @@ abstract class ProfileRepository {
   Future<Either<FailureHandler, UserDataModel>> getUserDate();
 
   Future<Either<FailureHandler, HistoryModel>> historyDate(status);
+  Future<Either<FailureHandler, TotalBalanceModel>> getTotalBalance();
 }
 
 class ProfileImple implements ProfileRepository {
@@ -90,7 +92,7 @@ class ProfileImple implements ProfileRepository {
 
   @override
   Future<Either<FailureHandler, HistoryModel>> historyDate(status) async {
-   try {
+    try {
       final response = await DioServices.get(
         url: Api.historyDate(status),
         headers: {
@@ -99,6 +101,30 @@ class ProfileImple implements ProfileRepository {
       );
 
       return Right(HistoryModel.fromJson(response.data));
+    } on DioException catch (e) {
+      log("${e.response!.data}");
+
+      return Left(
+        FailureCase(
+          message: e.response!.data["message"] ?? "Something is wrong",
+          status: e.response!.data["status"],
+          failuresCases: e.response!.data["data"] ?? [],
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<FailureHandler, TotalBalanceModel>> getTotalBalance() async {
+   try {
+      final response = await DioServices.get(
+        url: Api.totalBalanceDate,
+        headers: {
+          'Authorization': "Bearer ${InitialValues.userToken}",
+        },
+      );
+
+      return Right(TotalBalanceModel.fromJson(response.data));
     } on DioException catch (e) {
       log("${e.response!.data}");
 
