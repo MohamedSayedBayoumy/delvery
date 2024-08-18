@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/services/local_storage/local_storage.dart';
 import '../../../../model/model/profile_model/balance_model.dart';
+import '../../../../model/model/profile_model/earn_model.dart';
 import '../../../../model/model/profile_model/history_model.dart';
 import '../../../../model/model/profile_model/update_user_image.dart';
 import '../../../../model/model/profile_model/user_data_model.dart';
@@ -26,6 +27,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   HistoryModel? historyModel;
 
   TotalBalanceModel? totalBalanceModel;
+  EarnTimeModel? earnTimeModel;
 
   Color currentColor = Colors.green;
 
@@ -182,6 +184,24 @@ class ProfileCubit extends Cubit<ProfileState> {
       },
       (r) {
         totalBalanceModel = r;
+        emit(SuccessGetBalance());
+      },
+    );
+  }
+
+  getEarnHistoryTime(context) async {
+    emit(ProfileLoading());
+
+    final reuslt = await profileRepository.getEarnTime();
+
+    Navigator.pop(context);
+
+    reuslt.fold(
+      (l) {
+        emit(FailureProfileCase(message: l.message));
+      },
+      (r) {
+        earnTimeModel = r;
         emit(SuccessGetBalance());
       },
     );

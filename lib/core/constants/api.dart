@@ -23,6 +23,8 @@ class Api {
 
   static const totalBalanceDate = "/orders/all-orders-total";
 
+  static const earnTimeDate = "/orders/monthly-orders-total";
+
   static getNotification(int pageNumber) =>
       "/notification/all-notifications?page=$pageNumber";
 }

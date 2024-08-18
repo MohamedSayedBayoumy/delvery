@@ -7,6 +7,7 @@ import '../../core/widgets/custom_padding.dart';
 import '../auth/login/login_screen.dart';
 import 'change_password_screeen.dart';
 import 'controller/cubit/profile_cubit.dart';
+import 'earn_time_screen.dart';
 import 'edit_profile.dart';
 import 'history_screen.dart';
 import 'language_screen.dart';
@@ -92,6 +93,7 @@ class ProfileScreen extends StatelessWidget {
                     ListTileWidget(
                       title: AppLocalizations.of(context)!.earning_history,
                       icon: Icons.grading_sharp,
+                      to: EarnTimeScreen(profileCubit: cubit),
                     ),
                     const Divider(
                       height: 0.1,
