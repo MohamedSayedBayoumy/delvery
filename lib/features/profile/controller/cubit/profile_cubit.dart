@@ -1,7 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/services/local_storage/local_storage.dart';
+import '../../../../model/model/profile_model/history_model.dart';
 import '../../../../model/model/profile_model/update_user_image.dart';
 import '../../../../model/model/profile_model/user_data_model.dart';
 import '../../../../model/repo_pattern/auth_repo.dart';
@@ -20,6 +22,10 @@ class ProfileCubit extends Cubit<ProfileState> {
   ProfileRepository profileRepository;
 
   UserDataModel? userDataModel;
+
+  HistoryModel? historyModel;
+
+  Color currentColor = Colors.green;
 
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -125,5 +131,39 @@ class ProfileCubit extends Cubit<ProfileState> {
       userHaveOrder = true;
     }
     emit(CheckDoneState());
+  }
+
+  getHistory(context, {status}) async {
+    Future.delayed(
+      const Duration(seconds: 1),
+      () async {
+        emit(HistoryLoading());
+        final reuslt = await profileRepository.historyDate(status);
+
+        Navigator.pop(context);
+
+        reuslt.fold(
+          (l) {
+            emit(FailureProfileCase(message: l.message));
+          },
+          (r) {
+            historyModel = r;
+
+            emit(SuccessGetHistoryData());
+          },
+        );
+      },
+    );
+  }
+
+  void changeTab(int i, BuildContext context) {
+    if (i == 1) {
+      currentColor = Colors.red;
+      getHistory(context, status: 5);
+    } else {
+      currentColor = Colors.green;
+      getHistory(context, status: 4);
+    }
+    emit(ChangeTab());
   }
 }

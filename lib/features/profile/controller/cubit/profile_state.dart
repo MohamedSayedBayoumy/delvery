@@ -6,11 +6,17 @@ final class ProfileInitial extends ProfileState {}
 
 final class ProfileLoading extends ProfileState {}
 
+final class HistoryLoading extends ProfileState {}
+
 final class CheckDoneState extends ProfileState {}
 
 final class SetUserImage extends ProfileState {}
 
 final class SuccessGetUserData extends ProfileState {}
+
+final class SuccessGetHistoryData extends ProfileState {}
+
+final class ChangeTab extends ProfileState {}
 
 final class SuccessLogout extends ProfileState {
   final String message;

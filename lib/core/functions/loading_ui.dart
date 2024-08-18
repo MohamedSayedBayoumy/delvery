@@ -8,7 +8,7 @@ Future<void> loadingAlert(BuildContext context) async {
     barrierDismissible: false,
     builder: (BuildContext context) {
       return PopScope(
-        canPop: false,
+        canPop: true,
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
           child: AlertDialog(

@@ -76,7 +76,7 @@ class ProfileScreen extends StatelessWidget {
                     ListTileWidget(
                       title: AppLocalizations.of(context)!.history,
                       icon: Icons.history,
-                      to: const HistoryScreen(),
+                      to: HistoryScreen(profileCubit: cubit),
                     ),
                     const Divider(
                       height: 0.1,
