@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,7 +29,6 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
   static void setLocale(BuildContext context, Locale newLocale) {
     _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
-    log("message>?>>>>>>>>>>>>>>>>Q1111111111111111111");
     state?.setLocale(newLocale);
   }
 }
@@ -39,15 +37,12 @@ class _MyAppState extends State<MyApp> {
   Locale? newLocale;
 
   setLocale(Locale locale) {
-    log("message>?>>>>>>>>>>>>>>>>QQQQQQQQQQ");
-
     setState(() {
       newLocale = locale;
     });
   }
 
   Future<Locale> getLocale() async {
-    log("message>?>>>>>>>>>>>>>>>>11111111111111111111111111");
     final localString = await SecureLocalStorage.get(
       SecureLocalStorage.langeKey,
     );
@@ -58,7 +53,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void didChangeDependencies() {
-    log("message>?>>>>>>>>>>>>>>>>");
     getLocale().then((locale) => {setLocale(locale)});
     super.didChangeDependencies();
   }
