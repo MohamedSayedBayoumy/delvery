@@ -5,7 +5,6 @@ import '../../core/services/get_it/single_tone.dart';
 import '../../core/utils/navigation.dart';
 import '../../core/widgets/custom_padding.dart';
 import '../auth/login/login_screen.dart';
-import 'change_password_screeen.dart';
 import 'controller/cubit/profile_cubit.dart';
 import 'earn_time_screen.dart';
 import 'edit_profile.dart';
@@ -98,14 +97,14 @@ class ProfileScreen extends StatelessWidget {
                     const Divider(
                       height: 0.1,
                     ),
-                    ListTileWidget(
-                      title: AppLocalizations.of(context)!.change_password,
-                      icon: Icons.password,
-                      to: const ChangePasswordScreeen(),
-                    ),
-                    const Divider(
-                      height: 0.1,
-                    ),
+                    // ListTileWidget(
+                    //   title: AppLocalizations.of(context)!.change_password,
+                    //   icon: Icons.password,
+                    //   to: const ChangePasswordScreeen(),
+                    // ),
+                    // const Divider(
+                    //   height: 0.1,
+                    // ),
                     ListTileWidget(
                       title: AppLocalizations.of(context)!.faqs,
                       icon: Icons.question_mark_rounded,

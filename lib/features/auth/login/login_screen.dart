@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mts/core/constants/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../core/functions/loading_ui.dart';
@@ -8,6 +9,7 @@ import '../../../core/utils/navigation.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_padding.dart';
 import '../../../core/widgets/custom_text_filed.dart';
+import '../../profile/language_screen.dart';
 import '../controller/cubit/auth_cubit.dart';
 import '../register/register_screen.dart';
 import '../register/upload_document.dart';
@@ -47,6 +49,27 @@ class LoginScreen extends StatelessWidget {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              NavigationHelper.navigateTo(
+                                context,
+                                const LanguageScreen(),
+                              );
+                            },
+                            child: Text(
+                              AppLocalizations.of(context)!.language,
+                              style: const TextStyle(
+                                color: ConstantsColor.greenColor,
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
