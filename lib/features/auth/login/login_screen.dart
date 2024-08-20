@@ -107,20 +107,20 @@ class LoginScreen extends StatelessWidget {
                               : Icons.visibility_outlined),
                         ),
                       ),
-                      const SizedBox(height: 10.0),
-                      Row(
-                        children: [
-                          const Spacer(),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              AppLocalizations.of(context)!.forgot_password,
-                              style: const TextStyle(color: Colors.black),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10.0),
+                      // const SizedBox(height: 10.0),
+                      // Row(
+                      //   children: [
+                      //     const Spacer(),
+                      //     TextButton(
+                      //       onPressed: () {},
+                      //       child: Text(
+                      //         AppLocalizations.of(context)!.forgot_password,
+                      //         style: const TextStyle(color: Colors.black),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                      const SizedBox(height: 25.0),
                       CustomButton(
                         onPressed: () {
                           cubit.login(context);
