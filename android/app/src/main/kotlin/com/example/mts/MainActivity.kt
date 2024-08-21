@@ -1,4 +1,4 @@
-package com.example.mts
+package com.safri.mts
 
 import io.flutter.embedding.android.FlutterActivity
 
