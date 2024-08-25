@@ -67,5 +67,6 @@
     "order_delever": "Order Delever",
     "order_on": "Order on",
     "order_time": "Order Time",
-    "update": "Update"
+    "update": "Update",
+    "delete_account": "Delete Account"
 }

@@ -128,6 +128,13 @@ class ProfileScreen extends StatelessWidget {
                           cubit.logout(context);
                         },
                       ),
+                      ListTileWidget(
+                        title: AppLocalizations.of(context)!.delete_account,
+                        icon: Icons.highlight_remove_rounded,
+                        onTap: () {
+                          cubit.deleteAccount(context);
+                        },
+                      ),
                     ],
                   ],
                 );

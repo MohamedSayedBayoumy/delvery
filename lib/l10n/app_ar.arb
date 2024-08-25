@@ -67,5 +67,6 @@
   "order_delever": "تم التوصيل",
   "order_on": "رقم الاورود",
   "order_time":"وقت الطلب",
-  "update":"تحديث"
+  "update":"تحديث",
+  "delete_account": "مسح الحساب"
 }

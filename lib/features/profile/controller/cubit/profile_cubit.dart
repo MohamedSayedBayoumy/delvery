@@ -102,6 +102,22 @@ class ProfileCubit extends Cubit<ProfileState> {
     );
   }
 
+  deleteAccount(context) async {
+    emit(ProfileLoading());
+    final reuslt = await authRepository.deleteAccount();
+    Navigator.pop(context);
+
+    reuslt.fold(
+      (l) {
+        emit(FailureProfileCase(message: l.message));
+      },
+      (r) {
+        SecureLocalStorage.disposeAll();
+        emit(SuccessLogout(message: "Successfully delete account"));
+      },
+    );
+  }
+
   updataUserProfileData(context) async {
     emit(ProfileLoading());
     final reuslt = await profileRepository.updateUesr(

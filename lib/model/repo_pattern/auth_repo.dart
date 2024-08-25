@@ -23,6 +23,8 @@ abstract class AuthRepository {
       {UploadDocParamModel model});
 
   Future<Either<FailureHandler, GlobalResponseModel>> logout();
+
+  Future<Either<FailureHandler, GlobalResponseModel>> deleteAccount();
 }
 
 class AuthImple implements AuthRepository {
@@ -122,6 +124,33 @@ class AuthImple implements AuthRepository {
         },
         data: FormData.fromMap(
             {'destroy': '1'}), // 1 =>  logout ,  2 => delete account
+      );
+
+      return Right(GlobalResponseModel.fromJson(response.data));
+    } on DioException catch (e) {
+      log("${e.response!.data}");
+
+      return Left(
+        FailureCase(
+          message: e.response!.data["message"] ?? "Something is wrong",
+          status: e.response!.data["status"],
+          failuresCases: e.response!.data["data"] ?? [],
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<FailureHandler, GlobalResponseModel>> deleteAccount() async {
+    log("######### ${InitialValues.userToken}");
+    try {
+      final response = await DioServices.post(
+        url: Api.logout,
+        headers: {
+          'Authorization': "Bearer ${InitialValues.userToken}",
+        },
+        data: FormData.fromMap(
+            {'destroy': '2'}), // 1 =>  logout ,  2 => delete account
       );
 
       return Right(GlobalResponseModel.fromJson(response.data));
