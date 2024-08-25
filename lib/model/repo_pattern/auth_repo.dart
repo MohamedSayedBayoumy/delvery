@@ -85,14 +85,18 @@ class AuthImple implements AuthRepository {
           'Authorization': "Bearer ${InitialValues.userToken}",
         },
         data: FormData.fromMap({
-          'license_image': await MultipartFile.fromFile(
-            model!.drivingLicenseImage.toString(),
-            filename: model.drivingLicenseImage,
-          ),
-          'id_image': await MultipartFile.fromFile(
-            model.nationalIDImage.toString(),
-            filename: model.nationalIDImage,
-          ),
+          'license_image': model!.drivingLicenseImage == ""
+              ? ""
+              : await MultipartFile.fromFile(
+                  model.drivingLicenseImage.toString(),
+                  filename: model.drivingLicenseImage,
+                ),
+          'id_image': model.nationalIDImage == ""
+              ? ""
+              : await MultipartFile.fromFile(
+                  model.nationalIDImage.toString(),
+                  filename: model.nationalIDImage,
+                ),
           'car_type': model.carType,
           'car_number': model.vehicleNumber,
           'license_number': model.licenseNumber,
