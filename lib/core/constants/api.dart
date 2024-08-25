@@ -11,7 +11,7 @@ class Api {
 
   static const changeOrderStatus = "/orders/change-order-status";
 
-  static updateUserImage(String userID) =>
+  static updateUser(String userID) =>
       "/delivery-men/update-delivery-man/$userID";
 
   static const updateUserStatus =

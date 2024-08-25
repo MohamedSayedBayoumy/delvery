@@ -39,6 +39,10 @@ class ProfileCubit extends Cubit<ProfileState> {
   TextEditingController vichleNumberController = TextEditingController();
   TextEditingController licenceNumberController = TextEditingController();
 
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController newPasswordController = TextEditingController();
+  TextEditingController confirmNewPasswordController = TextEditingController();
+
   String idImage = '';
   String licenseImage = '';
 
@@ -105,6 +109,27 @@ class ProfileCubit extends Cubit<ProfileState> {
   deleteAccount(context) async {
     emit(ProfileLoading());
     final reuslt = await authRepository.deleteAccount();
+    Navigator.pop(context);
+
+    reuslt.fold(
+      (l) {
+        emit(FailureProfileCase(message: l.message));
+      },
+      (r) {
+        SecureLocalStorage.disposeAll();
+        emit(SuccessLogout(message: "Successfully delete account"));
+      },
+    );
+  }
+
+  changePassword(context) async {
+    emit(ChangePasswordLoading());
+    final reuslt = await authRepository.changePassword(
+        userid: userDataModel!.data!.id!,
+        email: userDataModel!.data!.email,
+        oldPassword: passwordController.text,
+        newPassword: newPasswordController.text,
+        confirmNewPassword: confirmNewPasswordController.text);
     Navigator.pop(context);
 
     reuslt.fold(

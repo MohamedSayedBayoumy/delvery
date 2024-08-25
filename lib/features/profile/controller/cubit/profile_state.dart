@@ -20,6 +20,8 @@ final class SuccessGetBalance extends ProfileState {}
 
 final class ChangeTab extends ProfileState {}
 
+final class ChangePasswordLoading extends ProfileState {}
+
 final class SuccessLogout extends ProfileState {
   final String message;
 

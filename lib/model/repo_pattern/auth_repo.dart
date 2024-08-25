@@ -25,6 +25,14 @@ abstract class AuthRepository {
   Future<Either<FailureHandler, GlobalResponseModel>> logout();
 
   Future<Either<FailureHandler, GlobalResponseModel>> deleteAccount();
+
+  Future<Either<FailureHandler, GlobalResponseModel>> changePassword({
+    String? userid,
+    String? email,
+    String? oldPassword,
+    String? newPassword,
+    String? confirmNewPassword,
+  });
 }
 
 class AuthImple implements AuthRepository {
@@ -165,6 +173,43 @@ class AuthImple implements AuthRepository {
         FailureCase(
           message: e.response!.data["message"] ?? "Something is wrong",
           status: e.response!.data["status"],
+          failuresCases: e.response!.data["data"] ?? [],
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<FailureHandler, GlobalResponseModel>> changePassword({
+    String? userid,
+    String? email,
+    String? confirmNewPassword,
+    String? oldPassword,
+    String? newPassword,
+  }) async {
+    log("######### ${InitialValues.userToken}");
+    try {
+      final response = await DioServices.put(
+        url: Api.updateUser(userid!),
+        headers: {
+          'Authorization': "Bearer ${InitialValues.userToken}",
+        },
+        data: FormData.fromMap({
+          "email":email,
+          'old_password': oldPassword,
+          'password': newPassword,
+          'confirm_password': confirmNewPassword,
+        }),
+      );
+
+      return Right(GlobalResponseModel.fromJson(response.data));
+    } on DioException catch (e) {
+      log("${e.response!.data}");
+
+      return Left(
+        FailureCase(
+          message: e.response!.data["message"] ?? "Something is wrong",
+          status: e.response!.data["status"] ?? false,
           failuresCases: e.response!.data["data"] ?? [],
         ),
       );

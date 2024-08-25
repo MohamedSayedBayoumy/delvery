@@ -33,7 +33,7 @@ class ProfileImple implements ProfileRepository {
       {ProfileParam? data}) async {
     try {
       final response = await DioServices.put(
-        url: Api.updateUserImage(data!.userId),
+        url: Api.updateUser(data!.userId),
         headers: {
           'Authorization': "Bearer ${InitialValues.userToken}",
         },
@@ -144,7 +144,7 @@ class ProfileImple implements ProfileRepository {
 
   @override
   Future<Either<FailureHandler, EarnTimeModel>> getEarnTime() async {
-   try {
+    try {
       final response = await DioServices.get(
         url: Api.earnTimeDate,
         headers: {
