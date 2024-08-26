@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="Delvery"
+        android:label="Safri Delivery"
         android:name="${applicationName}"
         android:allowBackup="false"
         android:icon="@mipmap/launcher_icon">
