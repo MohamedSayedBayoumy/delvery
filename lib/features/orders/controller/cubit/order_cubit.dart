@@ -218,7 +218,7 @@ class OrderCubit extends Cubit<OrderState> {
     Clipboard.setData(new ClipboardData(text: text));
 
     final snackBar = SnackBar(
-      content: Text(AppLocalizations.of(context)!.offline),
+      content: Text(AppLocalizations.of(context)!.the_copied),
     );
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
