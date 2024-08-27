@@ -68,5 +68,6 @@
     "order_on": "Order on",
     "order_time": "Order Time",
     "update": "Update",
-    "delete_account": "Delete Account"
+    "delete_account": "Delete Account",
+    "the_copied":"The address has been copied"
 }

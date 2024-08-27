@@ -138,7 +138,10 @@ class OrdersScreen extends StatelessWidget {
                                 );
                               },
                               onPressedOpenMap: () {
-                                cubit.openMap();
+                                cubit.openMap(
+                                  context,
+                                  e.userAddress!.first.title,
+                                );
                               },
                               onPressedDeleveryOrder: () {
                                 if (cubit.orderById == null) {

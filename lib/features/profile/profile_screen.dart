@@ -106,10 +106,10 @@ class ProfileScreen extends StatelessWidget {
                     const Divider(
                       height: 0.1,
                     ),
-                    ListTileWidget(
-                      title: AppLocalizations.of(context)!.faqs,
-                      icon: Icons.question_mark_rounded,
-                    ),
+                    // ListTileWidget(
+                    //   title: AppLocalizations.of(context)!.faqs,
+                    //   icon: Icons.question_mark_rounded,
+                    // ),
                     const Divider(
                       height: 0.1,
                     ),

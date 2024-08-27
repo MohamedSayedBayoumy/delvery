@@ -66,7 +66,8 @@
   "order_return": "عدم الاستلام",
   "order_delever": "تم التوصيل",
   "order_on": "رقم الاورود",
-  "order_time":"وقت الطلب",
-  "update":"تحديث",
-  "delete_account": "مسح الحساب"
+  "order_time": "وقت الطلب",
+  "update": "تحديث",
+  "delete_account": "مسح الحساب",
+  "the_copied": "لقد تم نسخ العنوان"
 }

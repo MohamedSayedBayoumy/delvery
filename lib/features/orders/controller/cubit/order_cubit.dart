@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -15,6 +16,7 @@ import '../../../../model/model/order_details.dart';
 import '../../../../model/model/order_model.dart';
 import '../../../../model/repo_pattern/order_repo.dart';
 import '../../../auth/login/login_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part 'order_state.dart';
 
@@ -113,7 +115,7 @@ class OrderCubit extends Cubit<OrderState> {
       },
       (r) {
         orderModel = r;
-        checkUserHaveOrderInProcess(context , addNavigation: addNavigation);
+        checkUserHaveOrderInProcess(context, addNavigation: addNavigation);
       },
     );
   }
@@ -212,7 +214,14 @@ class OrderCubit extends Cubit<OrderState> {
     emit(GetOrdersCase());
   }
 
-  openMap() async {
+  openMap(context, text) async {
+    Clipboard.setData(new ClipboardData(text: text));
+
+    final snackBar = SnackBar(
+      content: Text(AppLocalizations.of(context)!.offline),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
     final url =
         'https://www.google.com/maps/place/${orderById!.data.userLatitude},${orderById!.data.userLongitude}';
     if (await canLaunch(url)) {

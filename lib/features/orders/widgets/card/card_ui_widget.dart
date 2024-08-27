@@ -81,16 +81,16 @@ class OrderCardWidget extends StatelessWidget {
               children: [
                 if (orderById != null) ...[
                   if (e.itemNumber == orderById!.data.itemNumber) ...[
-                    Expanded(
-                      flex: 5,
-                      child: CustomButton(
-                        onPressed: onPressedDeleveryOrder,
-                        buttonText: AppLocalizations.of(context)!.delivery,
-                        buttonColor: Colors.blue,
-                        borderColor: Colors.blue,
-                        raduis: 7.0,
-                      ),
-                    ),
+                    //   Expanded(
+                    //     flex: 5,
+                    //     child: CustomButton(
+                    //       onPressed: onPressedDeleveryOrder,
+                    //       buttonText: AppLocalizations.of(context)!.delivery,
+                    //       buttonColor: Colors.blue,
+                    //       borderColor: Colors.blue,
+                    //       raduis: 7.0,
+                    //     ),
+                    //   ),
                   ]
                 ] else ...[
                   Expanded(
